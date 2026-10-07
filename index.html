@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bruce Yeh – CV</title>
+<style>
+:root{--bg:#fafaf9;--fg:#1c1917;--muted:#6b6560;--line:#e7e5e4;--accent:#0f766e;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+header.top{position:sticky;top:0;background:rgba(250,250,249,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+.bar{max-width:880px;margin:auto;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+nav a{margin-right:18px;color:var(--muted);font-size:14px}
+nav a:hover{color:var(--fg);text-decoration:none}
+.lang{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 14px;font-size:13px;cursor:pointer;color:var(--fg)}
+main{max-width:880px;margin:auto;padding:0 24px 80px}
+section{padding:48px 0 0}
+h1{font-size:40px;margin:56px 0 4px;letter-spacing:-.5px}
+.sub{font-size:18px;color:var(--muted);margin:0 0 16px}
+.contact{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--muted)}
+h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 20px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+p{margin:0 0 12px}
+.comp{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.box h3{margin:0 0 6px;font-size:15px}.box p{margin:0;font-size:14px;color:var(--muted)}
+.job{margin-bottom:32px}
+.job-h{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px}
+.job h3{margin:0;font-size:18px}
+.period{color:var(--muted);font-size:14px}
+.role{margin:0 0 8px;color:var(--muted);font-size:14px}
+.job ul{margin:0;padding-left:20px}.job li{margin-bottom:8px;font-size:15px}
+.filters{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 16px;font-size:13px;cursor:pointer;color:var(--fg)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;height:150px;object-fit:cover;border-bottom:1px solid var(--line)}
+.card .in{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{margin:0;font-size:16px}
+.metric{font-weight:600;color:var(--accent);font-size:14px}
+.card p{font-size:14px;color:var(--muted);margin:0}
+.meta{font-size:12px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto;padding-top:8px}
+.tag{font-size:11px;background:#f0efed;border-radius:4px;padding:2px 7px;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:640px){.two{grid-template-columns:1fr}h1{font-size:32px}nav{display:none}}
+.edu{margin-bottom:12px;font-size:15px}.edu span{display:block;color:var(--muted);font-size:13px}
+ul.plain{margin:0;padding-left:20px;font-size:15px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:32px}
+</style>
+</head>
+<body>
+<header class="top"><div class="bar">
+  <nav id="nav"></nav>
+  <button class="lang" id="langBtn">中文</button>
+</div></header>
+<main id="app"></main>
+<footer><span id="foot"></span></footer>
+<script>
+const UI={
+  en:{about:'About',skills:'Skills',exp:'Experience',work:'Portfolio',edu:'Education & Awards',all:'All',
+      management:'Management Results',tools:'Tools & Systems',other:'Other',education:'Education',awards:'Awards',
+      cats:{management:'Management Results',people:'People Leadership',tools:'Tools & Systems',other:'Other'}},
+  zh:{about:'簡介',skills:'核心能力',exp:'工作經歷',work:'作品集',edu:'學歷與獎項',all:'全部',
+      management:'管理成果',tools:'工具與系統',other:'其他',education:'學歷',awards:'獎項',
+      cats:{management:'管理成果',people:'人員領導',tools:'工具與系統',other:'其他'}}
+};
+let D=null,lang=localStorage.getItem('lang')||((navigator.language||'').startsWith('zh')?'zh':'en'),filter='all';
+const t=o=>o?(typeof o==='string'?o:(o[lang]||o.en||o.zh||'')):'';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl=u=>/^(https?:\/\/|mailto:|images\/)/i.test(u||'')?u:'';
+
+function render(){
+  const U=UI[lang],p=D.profile;
+  document.documentElement.lang=lang==='zh'?'zh-Hant':'en';
+  document.title=t(p.name)+' – CV';
+  document.getElementById('langBtn').textContent=lang==='zh'?'EN':'中文';
+  document.getElementById('nav').innerHTML=
+    [['about',U.about],['skills',U.skills],['exp',U.exp],['work',U.work],['edu',U.edu]].map(([id,l])=>`<a href="#${id}">${l}</a>`).join('');
+  const contact=[t(p.location),
+    p.email&&`<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>`,
+    p.phone&&esc(p.phone),
+    safeUrl(p.linkedin)&&`<a href="${esc(p.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`,
+    safeUrl(p.github)&&`<a href="${esc(p.github)}" target="_blank" rel="noopener">GitHub</a>`].filter(Boolean);
+  const cats=['management','people','tools','other'].filter(c=>D.portfolio.some(x=>x.category===c));
+  const items=D.portfolio.filter(x=>filter==='all'||x.category===filter);
+  document.getElementById('app').innerHTML=`
+  <section id="about" style="padding-top:0">
+    <h1>${esc(t(p.name))}</h1><p class="sub">${esc(t(p.title))}</p>
+    <div class="contact">${contact.map(c=>`<span>${c}</span>`).join('')}</div>
+    <div style="margin-top:28px">${D.summary.map(s=>`<p>${esc(t(s))}</p>`).join('')}</div>
+  </section>
+  <section id="skills"><h2>${U.skills}</h2><div class="comp">
+    ${D.competencies.map(c=>`<div class="box"><h3>${esc(t(c.title))}</h3><p>${esc(t(c.text))}</p></div>`).join('')}</div></section>
+  <section id="exp"><h2>${U.exp}</h2>
+    ${D.experience.map(j=>`<div class="job"><div class="job-h"><h3>${esc(j.company)}</h3><span class="period">${esc(t(j.period))}</span></div>
+      <p class="role">${esc(t(j.role))} · ${esc(t(j.location))}${j.tagline?` — ${esc(t(j.tagline))}`:''}</p>
+      <ul>${j.bullets.map(b=>`<li>${esc(t(b))}</li>`).join('')}</ul></div>`).join('')}</section>
+  <section id="work"><h2>${U.work}</h2>
+    <div class="filters">${['all',...cats].map(c=>`<button class="chip ${filter===c?'on':''}" data-f="${c}">${c==='all'?U.all:U.cats[c]}</button>`).join('')}</div>
+    <div class="grid">${items.map(x=>{
+      const link=safeUrl(x.link),img=safeUrl(x.image);
+      return `<div class="card">${img?`<img src="${esc(img)}" alt="${esc(t(x.title))}" loading="lazy">`:''}
+      <div class="in"><div class="meta">${esc(U.cats[x.category]||x.category)}${t(x.period)?' · '+esc(t(x.period)):''}${t(x.role)?' · '+esc(t(x.role)):''}</div>
+      <h3>${link?`<a href="${esc(link)}" target="_blank" rel="noopener">${esc(t(x.title))} ↗</a>`:esc(t(x.title))}</h3>
+      ${t(x.metric)?`<div class="metric">${esc(t(x.metric))}</div>`:''}
+      <p>${esc(t(x.desc))}</p>
+      <div class="tags">${String(x.tags||'').split(',').map(s=>s.trim()).filter(Boolean).map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div></div></div>`}).join('')}</div></section>
+  <section id="edu"><h2>${U.edu}</h2><div class="two"><div>
+    ${D.education.map(e=>`<div class="edu"><strong>${esc(t(e.degree))}</strong><span>${esc(t(e.school))} · ${esc(e.period)}</span></div>`).join('')}</div>
+    <div><h3 style="margin:0 0 10px;font-size:15px">${U.awards}</h3><ul class="plain">${D.awards.map(a=>`<li>${esc(t(a))}</li>`).join('')}</ul></div></div></section>`;
+  document.getElementById('foot').textContent='© '+new Date().getFullYear()+' '+t(p.name);
+  document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render();document.getElementById('work').scrollIntoView()});
+}
+document.getElementById('langBtn').onclick=()=>{lang=lang==='zh'?'en':'zh';localStorage.setItem('lang',lang);render()};
+fetch('data.json?'+Date.now()).then(r=>r.json()).then(d=>{D=d;render()})
+ .catch(e=>{document.getElementById('app').innerHTML='<p>Failed to load data.json. If opening locally, run <code>python3 -m http.server</code> in this folder.</p>'});
+</script>
+</body>
+</html>

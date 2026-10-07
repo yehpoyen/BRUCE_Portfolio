@@ -1,0 +1,582 @@
+{
+  "profile": {
+    "name": {
+      "en": "Bruce Yeh",
+      "zh": "葉柏言"
+    },
+    "title": {
+      "en": "Project Manager | Medical Imaging & Electromechanical Systems",
+      "zh": "專案經理｜醫療影像與機電系統"
+    },
+    "location": {
+      "en": "Taoyuan City, Taiwan",
+      "zh": "台灣桃園"
+    },
+    "email": "poyanyeh@gmail.com",
+    "phone": "",
+    "linkedin": "https://linkedin.com/in/bruceyeh116",
+    "github": ""
+  },
+  "summary": [
+    {
+      "en": "Results-driven Project Manager with 10+ years of experience leading cross-functional teams in the end-to-end development of complex electromechanical systems and Class II/III medical devices.",
+      "zh": "擁有 10 年以上經驗的結果導向專案經理，帶領跨部門團隊完成複雜機電系統與 II/III 類醫療器材的端到端開發。"
+    },
+    {
+      "en": "Specialized in medical imaging (endoscopy, imaging processor) and drug delivery systems, translating high-level requirements into executable engineering architectures.",
+      "zh": "專精於醫療影像（內視鏡、影像處理器）與藥物遞送系統，能將高層需求轉化為可執行的工程架構。"
+    },
+    {
+      "en": "Hands-on across the full product lifecycle — concept, prototype, regulatory, design transfer and launch — with experience on both sides of the contract manufacturer/ODM relationship, including contributing to a CM's QMS build-up.",
+      "zh": "具備完整產品生命週期的實務經驗——從概念、原型、法規、設計轉移到上市；並有合約製造商（CM）／ODM 雙方的工作經驗，包含參與 CM 的 QMS 建立。"
+    },
+    {
+      "en": "Experienced in people leadership: engineer interviewing and hiring, performance reviews and feedback, coaching and career development, and managing teams across regions.",
+      "zh": "具備人員領導經驗：工程師面試與招募、績效評核與回饋、教練輔導與職涯發展，以及跨地區團隊管理。"
+    },
+    {
+      "en": "Proven track record in driving hardware feasibility, adhering to stringent Design Controls (FDA/MDR, ISO 13485, ISO 14971 and IEC 60601), and managing global vendor strategies.",
+      "zh": "具備推動硬體可行性、落實嚴謹設計管制（FDA/MDR、ISO 13485、ISO 14971、IEC 60601）及管理全球供應商策略的實績。"
+    },
+    {
+      "en": "Adept at building custom digital tools to streamline project execution and bridging communication between global stakeholders and large-scale manufacturing partners. Fluent in English and Mandarin.",
+      "zh": "擅長自行開發數位工具以優化專案執行，並在全球利害關係人與大型製造夥伴之間搭起溝通橋樑。中英文流利。"
+    }
+  ],
+  "competencies": [
+    {
+      "title": {
+        "en": "Hardware & Systems",
+        "zh": "硬體與系統"
+      },
+      "text": {
+        "en": "Electromechanical System Development, Medical Imaging Systems, Product Development Lifecycle Management, product design and tradeoffs.",
+        "zh": "機電系統開發、醫療影像系統、產品開發生命週期管理、產品設計與取捨。"
+      }
+    },
+    {
+      "title": {
+        "en": "Project Execution",
+        "zh": "專案執行"
+      },
+      "text": {
+        "en": "Cross-Functional Leadership, Schedule & Critical Path Management, Vendor/Supplier Management, Process Automation (Google Apps Script).",
+        "zh": "跨部門領導、時程與要徑管理、供應商管理、流程自動化（Google Apps Script）。"
+      }
+    },
+    {
+      "title": {
+        "en": "Regulatory & Quality",
+        "zh": "法規與品質"
+      },
+      "text": {
+        "en": "Design Control, Design History File (DHF), FDA/MDR, IEC 60601, ISO 13485, Risk Mitigation & Issue Resolution.",
+        "zh": "設計管制、設計歷史檔案（DHF）、FDA/MDR、IEC 60601、ISO 13485、風險緩解與問題解決。"
+      }
+    },
+    {
+      "title": {
+        "en": "People & Cross-Region Leadership",
+        "zh": "人員與跨地區領導"
+      },
+      "text": {
+        "en": "Hiring & interviewing, performance feedback, coaching & career development, cross-region team management, cross-functional alignment (EE/ME/SW/Quality/Supply Chain).",
+        "zh": "招募與面試、績效回饋、教練輔導與職涯發展、跨地區團隊管理、跨部門對齊（電子／機構／軟體／品質／供應鏈）。"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "company": "SHL Medical",
+      "tagline": {
+        "en": "Global leader in advanced drug delivery systems",
+        "zh": "先進藥物遞送系統全球領導者"
+      },
+      "role": {
+        "en": "Project Manager (DET / Advanced Projects)",
+        "zh": "專案經理（DET／先進專案）"
+      },
+      "location": {
+        "en": "Taiwan",
+        "zh": "台灣"
+      },
+      "period": {
+        "en": "Jan 2023 – Present",
+        "zh": "2023/01 – 至今"
+      },
+      "bullets": [
+        {
+          "en": "Technical Issue Resolution: Provided tactical leadership during critical build phases; coordinated root-cause analysis with engineering teams to resolve a complex drug-leakage issue during the customer complaint process, mitigating project risks and keeping the schedule aligned.",
+          "zh": "技術問題解決：於關鍵製造階段提供戰術領導；協調工程團隊進行根因分析，解決客訴流程中的複雜藥液洩漏問題，降低專案風險並確保時程一致。"
+        },
+        {
+          "en": "QMS Leadership & Compliance: Spearheaded the establishment of the department's Quality Management System (QMS) from the ground up. Led the migration of product technical files to align with FDA/MDR standards and rigorous Design Control processes.",
+          "zh": "QMS 領導與合規：從零主導建立部門品質管理系統（QMS）；主導產品技術文件遷移，使其符合 FDA/MDR 法規與嚴謹的設計管制流程。"
+        },
+        {
+          "en": "Process Improvement & Tooling: Independently developed and deployed a custom Project Tracking System (Python/Google Apps Script) to centralize sample tracking and cross-functional Lessons Learned databases.",
+          "zh": "流程改善與工具：獨立開發並部署專案追蹤系統（Python／Google Apps Script），集中管理樣品追蹤與跨部門經驗教訓資料庫。"
+        },
+        {
+          "en": "Vendor Strategy & Negotiation: Evaluated in-house technical resource gaps and negotiated an outsourced tooling strategy with the CTO, achieving a 9x cost reduction by holding external suppliers accountable to development standards.",
+          "zh": "供應商策略與談判：評估內部技術資源缺口，與 CTO 協商外包模具策略，要求外部供應商遵循開發標準，達成 9 倍成本降低。"
+        }
+      ]
+    },
+    {
+      "company": "Advantech",
+      "tagline": {
+        "en": "Leading player in IoT and digital healthcare solutions",
+        "zh": "物聯網與數位醫療解決方案領導廠商"
+      },
+      "role": {
+        "en": "Product Manager (Imaging Systems)",
+        "zh": "產品經理（影像系統）"
+      },
+      "location": {
+        "en": "Taiwan",
+        "zh": "台灣"
+      },
+      "period": {
+        "en": "Jun 2021 – Dec 2022",
+        "zh": "2021/06 – 2022/12"
+      },
+      "bullets": [
+        {
+          "en": "Technology Brainstorming: Led early technology brainstorming and architecture alignment for Intelligent Operating Room solutions and medical imaging displays (including C-arm X-ray), facilitating clear tradeoffs across cross-functional teams.",
+          "zh": "技術發想：主導智慧手術室解決方案與醫療影像顯示器（含 C-arm X 光）的早期技術發想與架構對齊，促成跨部門間清晰的取捨決策。"
+        },
+        {
+          "en": "System Integration: Aligned internal R&D and external partners to ensure seamless electromechanical device integration with hospital IT systems while maintaining regulatory compliance.",
+          "zh": "系統整合：協調內部研發與外部夥伴，確保機電設備與醫院 IT 系統順暢整合並維持法規合規。"
+        },
+        {
+          "en": "Strategic Investment & Architecture: Spearheaded a 4-person strategic task force to evaluate and secure internal corporate investment in an arm/mounting manufacturer (HiGrade), driving vertical integration of hardware solutions for operating rooms.",
+          "zh": "策略投資與架構：領導 4 人策略小組，評估並爭取公司內部對支臂／吊臂製造商（HiGrade）的投資，推動手術室硬體解決方案的垂直整合。"
+        }
+      ]
+    },
+    {
+      "company": "Altek Group",
+      "tagline": {
+        "en": "Medical device design and manufacturing service provider",
+        "zh": "醫療器材設計與製造服務供應商"
+      },
+      "role": {
+        "en": "Project Manager (Product Lead)",
+        "zh": "專案經理（產品負責人）"
+      },
+      "location": {
+        "en": "Taiwan",
+        "zh": "台灣"
+      },
+      "period": {
+        "en": "Feb 2016 – Feb 2021",
+        "zh": "2016/02 – 2021/02"
+      },
+      "bullets": [
+        {
+          "en": "Class III Hardware Development: Drove end-to-end hardware development of a Class III insulin pump, ensuring strict adherence to Design Control, ISO 13485 and IEC 60601, and overseeing the release process for parts and assemblies.",
+          "zh": "III 類硬體開發：主導 III 類胰島素幫浦的端到端硬體開發，嚴格遵循設計管制、ISO 13485 與 IEC 60601，並監督零組件與組裝件的發行流程。"
+        },
+        {
+          "en": "Imaging Product Execution: Directed cross-functional development (EE, ME, SW) of disposable endoscopy imaging systems; held decision-making authority on technical conflicts and kept teams accountable for key decision milestones.",
+          "zh": "影像產品執行：指揮拋棄式內視鏡影像系統的跨部門開發（電子、機構、軟體）；對技術衝突擁有決策權，並要求團隊達成關鍵決策里程碑。"
+        },
+        {
+          "en": "Manufacturing & Build Phases: Managed design transfer with R&D and process engineers during build phases across a 5,000+ employee manufacturing site, coordinating with Supply Chain and Engineering on build quantities and configurations to ensure scalable production.",
+          "zh": "製造與試產階段：於 5,000 人以上的製造廠區，與研發及製程工程師管理設計轉移，並與供應鏈及工程協調試產數量與配置，確保可量產擴展。"
+        },
+        {
+          "en": "Requirements Engineering: Led customer-facing requirements definition, translating ambiguous clinical concepts into executable hardware and system specifications.",
+          "zh": "需求工程：主導面向客戶的需求定義，將模糊的臨床概念轉化為可執行的硬體與系統規格。"
+        }
+      ]
+    }
+  ],
+  "portfolio": [
+    {
+      "category": "tools",
+      "title": {
+        "en": "Project Tracking System",
+        "zh": "專案追蹤系統"
+      },
+      "role": {
+        "en": "Developer & Owner",
+        "zh": "開發者與負責人"
+      },
+      "period": {
+        "en": "SHL Medical",
+        "zh": "SHL Medical"
+      },
+      "metric": {
+        "en": "Centralized sample tracking & Lessons Learned",
+        "zh": "集中樣品追蹤與經驗教訓"
+      },
+      "desc": {
+        "en": "Custom tool built with Python and Google Apps Script to centralize sample tracking and cross-functional Lessons Learned databases.",
+        "zh": "以 Python 與 Google Apps Script 自行開發，集中管理樣品追蹤與跨部門經驗教訓資料庫。"
+      },
+      "tags": "Python, Google Apps Script",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "Outsourced Tooling Strategy",
+        "zh": "外包模具策略"
+      },
+      "role": {
+        "en": "Project Manager",
+        "zh": "專案經理"
+      },
+      "period": {
+        "en": "SHL Medical",
+        "zh": "SHL Medical"
+      },
+      "metric": {
+        "en": "9x cost reduction",
+        "zh": "成本降低 9 倍"
+      },
+      "desc": {
+        "en": "Evaluated in-house technical resource gaps and negotiated an outsourced tooling strategy with the CTO, holding suppliers accountable to development standards.",
+        "zh": "評估內部技術資源缺口，與 CTO 協商外包模具策略，要求供應商遵循開發標準。"
+      },
+      "tags": "Vendor Management, Negotiation",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "Department QMS Build-up",
+        "zh": "部門 QMS 從零建立"
+      },
+      "role": {
+        "en": "Lead",
+        "zh": "主導者"
+      },
+      "period": {
+        "en": "SHL Medical",
+        "zh": "SHL Medical"
+      },
+      "metric": {
+        "en": "FDA/MDR-aligned technical files",
+        "zh": "技術文件符合 FDA/MDR"
+      },
+      "desc": {
+        "en": "Established the department's Quality Management System from scratch and migrated product technical files to meet FDA/MDR and Design Control requirements.",
+        "zh": "從零建立部門品質管理系統，並遷移產品技術文件以符合 FDA/MDR 與設計管制要求。"
+      },
+      "tags": "QMS, FDA, MDR, Design Control",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "Drug-leakage Root-cause Resolution",
+        "zh": "藥液洩漏根因解決"
+      },
+      "role": {
+        "en": "Tactical Lead",
+        "zh": "戰術領導"
+      },
+      "period": {
+        "en": "SHL Medical",
+        "zh": "SHL Medical"
+      },
+      "metric": {
+        "en": "Schedule alignment maintained",
+        "zh": "維持時程一致"
+      },
+      "desc": {
+        "en": "Coordinated root-cause analysis across engineering teams to resolve a complex drug-leakage issue raised in a customer complaint.",
+        "zh": "協調工程團隊進行根因分析，解決客訴所提出的複雜藥液洩漏問題。"
+      },
+      "tags": "RCA, Risk Mitigation",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "Class III Insulin Pump",
+        "zh": "III 類胰島素幫浦"
+      },
+      "role": {
+        "en": "Project Manager (Product Lead)",
+        "zh": "專案經理（產品負責人）"
+      },
+      "period": {
+        "en": "Altek Group",
+        "zh": "Altek Group"
+      },
+      "metric": {
+        "en": "End-to-end hardware development",
+        "zh": "端到端硬體開發"
+      },
+      "desc": {
+        "en": "Drove hardware development under Design Control, ISO 13485 and IEC 60601, overseeing parts and assembly release.",
+        "zh": "在設計管制、ISO 13485 與 IEC 60601 下主導硬體開發，監督零組件與組裝件發行。"
+      },
+      "tags": "Class III, IEC 60601, ISO 13485",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "Disposable Endoscopy Imaging System",
+        "zh": "拋棄式內視鏡影像系統"
+      },
+      "role": {
+        "en": "Project Manager (Product Lead)",
+        "zh": "專案經理（產品負責人）"
+      },
+      "period": {
+        "en": "Altek Group",
+        "zh": "Altek Group"
+      },
+      "metric": {
+        "en": "EE / ME / SW cross-functional delivery",
+        "zh": "電子／機構／軟體跨部門交付"
+      },
+      "desc": {
+        "en": "Directed cross-functional development and design transfer to a 5,000+ employee manufacturing site.",
+        "zh": "指揮跨部門開發，並將設計轉移至 5,000 人以上的製造廠區。"
+      },
+      "tags": "Endoscopy, Design Transfer",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "HiGrade Strategic Investment",
+        "zh": "HiGrade 策略投資"
+      },
+      "role": {
+        "en": "Task Force Lead",
+        "zh": "小組領導"
+      },
+      "period": {
+        "en": "Advantech",
+        "zh": "Advantech"
+      },
+      "metric": {
+        "en": "4-person task force",
+        "zh": "4 人策略小組"
+      },
+      "desc": {
+        "en": "Evaluated and secured internal investment in an arm/mounting manufacturer to drive vertical integration for operating rooms.",
+        "zh": "評估並爭取內部投資支臂／吊臂製造商，推動手術室硬體垂直整合。"
+      },
+      "tags": "Strategy, Investment, Operating Room",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "people",
+      "title": {
+        "en": "Hiring & Interviewing",
+        "zh": "招募與面試"
+      },
+      "role": {
+        "en": "Interviewer",
+        "zh": "面試官"
+      },
+      "period": {
+        "en": "",
+        "zh": ""
+      },
+      "metric": {
+        "en": "",
+        "zh": ""
+      },
+      "desc": {
+        "en": "Participated in engineering candidate interviews and hiring decisions. [Edit: add roles hired, number of hires, company]",
+        "zh": "參與工程人員面試與錄用決策。[請補充：職缺類型、人數、公司]"
+      },
+      "tags": "Hiring, Interviewing",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "people",
+      "title": {
+        "en": "Performance Feedback & Reviews",
+        "zh": "績效評核與回饋"
+      },
+      "role": {
+        "en": "Reviewer",
+        "zh": "評核者"
+      },
+      "period": {
+        "en": "",
+        "zh": ""
+      },
+      "metric": {
+        "en": "",
+        "zh": ""
+      },
+      "desc": {
+        "en": "Provided performance feedback and contributed to performance reviews. [Edit: add scope, team size, outcomes]",
+        "zh": "提供績效回饋並參與績效評核。[請補充：範圍、團隊規模、成果]"
+      },
+      "tags": "Performance Management",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "people",
+      "title": {
+        "en": "Coaching & Career Development",
+        "zh": "教練輔導與職涯發展"
+      },
+      "role": {
+        "en": "Coach / Mentor",
+        "zh": "教練／導師"
+      },
+      "period": {
+        "en": "",
+        "zh": ""
+      },
+      "metric": {
+        "en": "",
+        "zh": ""
+      },
+      "desc": {
+        "en": "Coached team members on technical decisions and career growth. [Edit: add a concrete example and result]",
+        "zh": "輔導成員的技術決策與職涯成長。[請補充：具體案例與結果]"
+      },
+      "tags": "Coaching, Mentoring",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "people",
+      "title": {
+        "en": "Cross-Region Team Management",
+        "zh": "跨地區團隊管理"
+      },
+      "role": {
+        "en": "Project Manager",
+        "zh": "專案經理"
+      },
+      "period": {
+        "en": "",
+        "zh": ""
+      },
+      "metric": {
+        "en": "",
+        "zh": ""
+      },
+      "desc": {
+        "en": "Aligned global stakeholders, vendors and manufacturing partners across regions on schedule, scope and quality. [Edit: add regions and team sizes]",
+        "zh": "協調跨地區的利害關係人、供應商與製造夥伴，對齊時程、範圍與品質。[請補充：地區與團隊規模]"
+      },
+      "tags": "Global Teams, Stakeholder Management",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "CM QMS Establishment",
+        "zh": "CM 品質系統（QMS）建立"
+      },
+      "role": {
+        "en": "Contributor",
+        "zh": "參與者"
+      },
+      "period": {
+        "en": "[confirm company]",
+        "zh": "[請確認公司]"
+      },
+      "metric": {
+        "en": "CM/ODM-side quality system",
+        "zh": "CM/ODM 端品質系統"
+      },
+      "desc": {
+        "en": "Took part in establishing the quality management system at a contract manufacturer.",
+        "zh": "參與合約製造商品質管理系統的建立。"
+      },
+      "tags": "QMS, CM, ODM",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "Concept-to-Launch Product Development",
+        "zh": "從概念到上市的產品開發"
+      },
+      "role": {
+        "en": "Project Manager",
+        "zh": "專案經理"
+      },
+      "period": {
+        "en": "Altek / SHL",
+        "zh": "Altek / SHL"
+      },
+      "metric": {
+        "en": "Concept → prototype → regulatory → design transfer → launch",
+        "zh": "概念→原型→法規→設計轉移→上市"
+      },
+      "desc": {
+        "en": "Cross-functional product development spanning prototype builds, regulatory compliance, design transfer to manufacturing and market launch.",
+        "zh": "跨部門產品開發，涵蓋原型試製、法規符合、設計轉移至製造及上市。"
+      },
+      "tags": "NPI, Design Transfer, Regulatory",
+      "link": "",
+      "image": ""
+    }
+  ],
+  "education": [
+    {
+      "degree": {
+        "en": "M.S. Industrial and Product Design (incl. Germany exchange)",
+        "zh": "工業設計碩士（含德國交換）"
+      },
+      "school": {
+        "en": "National Taipei University of Technology",
+        "zh": "國立臺北科技大學"
+      },
+      "period": "2012 – 2015"
+    },
+    {
+      "degree": {
+        "en": "Master Program in Medical Clinical Sciences",
+        "zh": "醫學臨床科學碩士班"
+      },
+      "school": {
+        "en": "Chang Gung University",
+        "zh": "長庚大學"
+      },
+      "period": "2010 – 2011"
+    },
+    {
+      "degree": {
+        "en": "B.S. Biotechnology",
+        "zh": "生物技術學士"
+      },
+      "school": {
+        "en": "National Dong Hwa University",
+        "zh": "國立東華大學"
+      },
+      "period": "2006 – 2010"
+    }
+  ],
+  "awards": [
+    {
+      "en": "6th Taiwan National Industrial Innovation Award – Finalist (2019)",
+      "zh": "第 6 屆國家產業創新獎 – 入圍（2019）"
+    },
+    {
+      "en": "IDEA Design Award – Finalist (2016)",
+      "zh": "IDEA 設計獎 – 入圍（2016）"
+    }
+  ]
+}
