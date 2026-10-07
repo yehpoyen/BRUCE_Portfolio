@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bruce Yeh – CV</title>
 <style>
-:root{--bg:#fafaf9;--fg:#1c1917;--muted:#6b6560;--line:#e7e5e4;--accent:#0f766e;--card:#fff}
+:root{--bg:#fafaf9;--fg:#1c1917;--muted:#6b6560;--line:#e7e5e4;--accent:#0f766e;--card:#fff;--danger:#b91c1c}
 *{box-sizing:border-box}
 body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;background:var(--bg);color:var(--fg)}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
@@ -22,9 +22,9 @@ h1{font-size:40px;margin:56px 0 4px;letter-spacing:-.5px}
 h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 20px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 p{margin:0 0 12px}
 .comp{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.box{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
 .box h3{margin:0 0 6px;font-size:15px}.box p{margin:0;font-size:14px;color:var(--muted)}
-.job{margin-bottom:32px}
+.job{position:relative;margin-bottom:32px}
 .job-h{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px}
 .job h3{margin:0;font-size:18px}
 .period{color:var(--muted);font-size:14px}
@@ -34,7 +34,7 @@ p{margin:0 0 12px}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 16px;font-size:13px;cursor:pointer;color:var(--fg)}
 .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
 .card img{width:100%;height:150px;object-fit:cover;border-bottom:1px solid var(--line)}
 .card .in{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
 .card h3{margin:0;font-size:16px}
@@ -45,9 +45,43 @@ p{margin:0 0 12px}
 .tag{font-size:11px;background:#f0efed;border-radius:4px;padding:2px 7px;color:var(--muted)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:32px}
 @media(max-width:640px){.two{grid-template-columns:1fr}h1{font-size:32px}nav{display:none}}
-.edu{margin-bottom:12px;font-size:15px}.edu span{display:block;color:var(--muted);font-size:13px}
+.edu{position:relative;margin-bottom:12px;font-size:15px}.edu span.s{display:block;color:var(--muted);font-size:13px}
 ul.plain{margin:0;padding-left:20px;font-size:15px}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:32px}
+
+/* ---- edit mode ---- */
+body.edit .sumrow{position:relative;padding-right:100px}
+body.edit .sumrow .ctl-row{top:4px}
+.sumrow{position:relative}
+body.edit{padding-bottom:84px}
+.ed{outline:1px dashed rgba(15,118,110,.45);outline-offset:2px;border-radius:3px;cursor:text;min-width:2em;display:inline-block}
+h1.ed,p.ed,li.ed,h3.ed,div.ed{display:block}
+li.ed{display:list-item}
+.ed:hover{background:#f0fdfa}
+.ed:focus{outline:2px solid var(--accent);background:#f0fdfa}
+.ed:empty::before{content:attr(data-ph);color:#a8a29e;font-style:italic}
+.ctl-row{position:absolute;top:6px;right:6px;display:flex;gap:4px;z-index:2}
+li .ctl-row,.edu .ctl-row{position:static;display:inline-flex;margin-left:8px;vertical-align:middle}
+.ctl{border:1px solid var(--line);background:#fff;border-radius:6px;padding:0 7px;font-size:12px;line-height:22px;cursor:pointer;color:var(--muted)}
+.ctl:hover{background:#f5f5f4;color:var(--fg)}.ctl.danger:hover{color:var(--danger)}
+.add{border:1px dashed var(--accent);background:transparent;color:var(--accent);border-radius:8px;padding:6px 14px;font-size:13px;cursor:pointer;margin-top:8px}
+.add:hover{background:#f0fdfa}
+.editbar[hidden]{display:none}
+.editbar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 24px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;z-index:50;box-shadow:0 -4px 16px rgba(0,0,0,.05)}
+.editbar button{font:inherit;font-size:14px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;cursor:pointer;color:var(--fg)}
+.editbar button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+#status{font-size:13px;color:var(--muted);flex:1;min-width:140px}
+#status.ok{color:var(--accent)}#status.err{color:var(--danger)}
+.banner{background:#f0fdfa;border:1px solid #99f6e4;color:#115e59;border-radius:10px;padding:10px 14px;font-size:13px;margin:16px 0 0}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
+.dlg{background:#fff;border-radius:14px;padding:20px;max-width:520px;width:100%;max-height:90vh;overflow:auto}
+.dlg h3{margin:0 0 8px}
+.dlg label{display:block;font-size:12px;color:var(--muted);margin:10px 0 3px}
+.dlg input,.dlg select{width:100%;font:inherit;padding:7px 9px;border:1px solid var(--line);border-radius:8px}
+.dlg .hint{font-size:12px;color:var(--muted)}
+.dlg .acts{margin-top:16px;text-align:right}
+.dlg button{font:inherit;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 16px;cursor:pointer}
+.dlg button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 </style>
 </head>
 <body>
@@ -57,65 +91,206 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:32px}
 </div></header>
 <main id="app"></main>
 <footer><span id="foot"></span></footer>
+<div class="editbar" id="editbar" hidden>
+  <button id="bGh">⚙ GitHub 連線</button>
+  <button class="primary" id="bSave">儲存到 GitHub</button>
+  <button id="bExport">匯出 JSON</button>
+  <button id="bImport">匯入 JSON</button>
+  <input type="file" id="fImport" accept=".json" hidden>
+  <span id="status"></span>
+</div>
 <script>
+const EDIT=new URLSearchParams(location.search).has('edit');
 const UI={
-  en:{about:'About',skills:'Skills',exp:'Experience',work:'Portfolio',edu:'Education & Awards',all:'All',
-      management:'Management Results',tools:'Tools & Systems',other:'Other',education:'Education',awards:'Awards',
+  en:{about:'About',skills:'Skills',exp:'Experience',work:'Portfolio',edu:'Education & Awards',all:'All',awards:'Awards',
       cats:{management:'Management Results',people:'People Leadership',tools:'Tools & Systems',other:'Other'}},
-  zh:{about:'簡介',skills:'核心能力',exp:'工作經歷',work:'作品集',edu:'學歷與獎項',all:'全部',
-      management:'管理成果',tools:'工具與系統',other:'其他',education:'學歷',awards:'獎項',
+  zh:{about:'簡介',skills:'核心能力',exp:'工作經歷',work:'作品集',edu:'學歷與獎項',all:'全部',awards:'獎項',
       cats:{management:'管理成果',people:'人員領導',tools:'工具與系統',other:'其他'}}
 };
-let D=null,lang=localStorage.getItem('lang')||((navigator.language||'').startsWith('zh')?'zh':'en'),filter='all';
-const t=o=>o?(typeof o==='string'?o:(o[lang]||o.en||o.zh||'')):'';
+const TPL={
+  summary:()=>({en:'',zh:''}),bullets:()=>({en:'',zh:''}),awards:()=>({en:'',zh:''}),
+  competencies:()=>({title:{en:'',zh:''},text:{en:'',zh:''}}),
+  experience:()=>({company:'',tagline:{en:'',zh:''},role:{en:'',zh:''},location:{en:'',zh:''},period:{en:'',zh:''},bullets:[]}),
+  portfolio:()=>({category:'management',title:{en:'',zh:''},role:{en:'',zh:''},period:{en:'',zh:''},metric:{en:'',zh:''},desc:{en:'',zh:''},tags:'',link:'',image:''}),
+  education:()=>({degree:{en:'',zh:''},school:{en:'',zh:''},period:''})
+};
+let D=null,sha=null,dirty=false,lang=localStorage.getItem('lang')||((navigator.language||'').startsWith('zh')?'zh':'en'),filter='all';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl=u=>/^(https?:\/\/|mailto:|images\/)/i.test(u||'')?u:'';
+const t=o=>o?(typeof o==='string'?o:(o[lang]||o.en||o.zh||'')):'';
+
+/* ---- path helpers: '@' = current language ---- */
+const parts=p=>p.split('.').map(k=>k==='@'?lang:k);
+const getP=p=>parts(p).reduce((o,k)=>o==null?o:o[k],D);
+function setP(p,v){const a=parts(p),last=a.pop();let o=D;for(const k of a){if(o[k]==null||typeof o[k]!=='object')o[k]={};o=o[k]}o[last]=v}
+const getArr=p=>p.split('.').reduce((o,k)=>o[k],D);
+
+/* ---- render helpers ---- */
+const has=p=>EDIT||!!getP(p);
+function E(path,ph,tag='span',cls='',single=true){
+  const v=getP(path)||'';
+  if(!EDIT)return v?`<${tag}${cls?` class="${cls}"`:''}>${esc(v)}</${tag}>`:'';
+  return `<${tag} class="${cls} ed" data-p="${path}" data-ph="${esc(ph)}" data-single="${single?1:0}" contenteditable="plaintext-only">${esc(v)}</${tag}>`;
+}
+const ctl=(path,gear='')=>!EDIT?'':`<span class="ctl-row">${gear}<button class="ctl" data-act="up" data-path="${path}" title="上移">↑</button><button class="ctl" data-act="down" data-path="${path}" title="下移">↓</button><button class="ctl danger" data-act="del" data-path="${path}" title="刪除">✕</button></span>`;
+const addBtn=(path,tpl,label)=>!EDIT?'':`<div><button class="add" data-act="add" data-path="${path}" data-tpl="${tpl}">＋ ${label}</button></div>`;
 
 function render(){
-  const U=UI[lang],p=D.profile;
+  const U=UI[lang],p=D.profile,y=window.scrollY;
   document.documentElement.lang=lang==='zh'?'zh-Hant':'en';
-  document.title=t(p.name)+' – CV';
-  document.getElementById('langBtn').textContent=lang==='zh'?'EN':'中文';
-  document.getElementById('nav').innerHTML=
-    [['about',U.about],['skills',U.skills],['exp',U.exp],['work',U.work],['edu',U.edu]].map(([id,l])=>`<a href="#${id}">${l}</a>`).join('');
-  const contact=[t(p.location),
+  document.title=(t(p.name)||'CV')+' – CV';
+  document.getElementById('langBtn').textContent=EDIT?(lang==='zh'?'編輯中：中文 → 切到 EN':'Editing: EN → 切到中文'):(lang==='zh'?'EN':'中文');
+  document.getElementById('nav').innerHTML=[['about',U.about],['skills',U.skills],['exp',U.exp],['work',U.work],['edu',U.edu]].map(([id,l])=>`<a href="#${id}">${l}</a>`).join('');
+  const catKeys=Object.keys(U.cats);
+  const cats=EDIT?catKeys:catKeys.filter(c=>D.portfolio.some(x=>x.category===c));
+  const items=D.portfolio.map((x,i)=>[x,i]).filter(([x])=>filter==='all'||x.category===filter);
+  const contact=[
+    has('profile.location.@')&&E('profile.location.@','地點 / Location'),
     p.email&&`<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>`,
     p.phone&&esc(p.phone),
     safeUrl(p.linkedin)&&`<a href="${esc(p.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`,
     safeUrl(p.github)&&`<a href="${esc(p.github)}" target="_blank" rel="noopener">GitHub</a>`].filter(Boolean);
-  const cats=['management','people','tools','other'].filter(c=>D.portfolio.some(x=>x.category===c));
-  const items=D.portfolio.filter(x=>filter==='all'||x.category===filter);
   document.getElementById('app').innerHTML=`
+  ${EDIT?`<div class="banner">編輯模式：直接點文字修改。右上角按鈕切換語言，可分別編輯中文與英文。完成後按下方「儲存到 GitHub」。</div>`:''}
   <section id="about" style="padding-top:0">
-    <h1>${esc(t(p.name))}</h1><p class="sub">${esc(t(p.title))}</p>
-    <div class="contact">${contact.map(c=>`<span>${c}</span>`).join('')}</div>
-    <div style="margin-top:28px">${D.summary.map(s=>`<p>${esc(t(s))}</p>`).join('')}</div>
+    ${E('profile.name.@','姓名 / Name','h1')}
+    ${has('profile.title.@')?E('profile.title.@','職稱 / Title','p','sub'):''}
+    <div class="contact">${contact.map(c=>`<span>${c}</span>`).join('')}${EDIT?`<button class="ctl" data-act="profile">✎ Email／電話／連結</button>`:''}</div>
+    <div style="margin-top:28px">${D.summary.map((s,i)=>`<div class="sumrow">${E(`summary.${i}.@`,'簡介段落 / Summary paragraph','p','',false)}${ctl('summary.'+i)}</div>`).join('')}${addBtn('summary','summary','新增段落')}</div>
   </section>
   <section id="skills"><h2>${U.skills}</h2><div class="comp">
-    ${D.competencies.map(c=>`<div class="box"><h3>${esc(t(c.title))}</h3><p>${esc(t(c.text))}</p></div>`).join('')}</div></section>
+    ${D.competencies.map((c,i)=>`<div class="box">${ctl('competencies.'+i)}${E(`competencies.${i}.title.@`,'標題','h3')}${E(`competencies.${i}.text.@`,'內容','p','',false)}</div>`).join('')}</div>
+    ${addBtn('competencies','competencies','新增能力')}</section>
   <section id="exp"><h2>${U.exp}</h2>
-    ${D.experience.map(j=>`<div class="job"><div class="job-h"><h3>${esc(j.company)}</h3><span class="period">${esc(t(j.period))}</span></div>
-      <p class="role">${esc(t(j.role))} · ${esc(t(j.location))}${j.tagline?` — ${esc(t(j.tagline))}`:''}</p>
-      <ul>${j.bullets.map(b=>`<li>${esc(t(b))}</li>`).join('')}</ul></div>`).join('')}</section>
+    ${D.experience.map((j,i)=>`<div class="job">${ctl('experience.'+i)}
+      <div class="job-h">${E(`experience.${i}.company`,'公司','h3')}${E(`experience.${i}.period.@`,'期間','span','period')}</div>
+      <p class="role">${E(`experience.${i}.role.@`,'職稱')}${has(`experience.${i}.location.@`)?' · '+E(`experience.${i}.location.@`,'地點'):''}${has(`experience.${i}.tagline.@`)?' — '+E(`experience.${i}.tagline.@`,'公司簡述'):''}</p>
+      <ul>${(j.bullets||[]).map((b,k)=>`<li>${E(`experience.${i}.bullets.${k}.@`,'成果重點','span','',false)}${ctl(`experience.${i}.bullets.${k}`)}</li>`).join('')}</ul>
+      ${addBtn(`experience.${i}.bullets`,'bullets','新增重點')}</div>`).join('')}
+    ${addBtn('experience','experience','新增經歷')}</section>
   <section id="work"><h2>${U.work}</h2>
     <div class="filters">${['all',...cats].map(c=>`<button class="chip ${filter===c?'on':''}" data-f="${c}">${c==='all'?U.all:U.cats[c]}</button>`).join('')}</div>
-    <div class="grid">${items.map(x=>{
-      const link=safeUrl(x.link),img=safeUrl(x.image);
-      return `<div class="card">${img?`<img src="${esc(img)}" alt="${esc(t(x.title))}" loading="lazy">`:''}
+    <div class="grid">${items.map(([x,i])=>{
+      const link=safeUrl(x.link),img=safeUrl(x.image),T=E(`portfolio.${i}.title.@`,'標題','h3');
+      const title=EDIT||!link?T:`<h3><a href="${esc(link)}" target="_blank" rel="noopener">${esc(t(x.title))} ↗</a></h3>`;
+      return `<div class="card">${ctl('portfolio.'+i,`<button class="ctl" data-act="card" data-path="${i}" title="類別／標籤／連結／圖片">⚙</button>`)}
+      ${img?`<img src="${esc(img)}" alt="${esc(t(x.title))}" loading="lazy">`:''}
       <div class="in"><div class="meta">${esc(U.cats[x.category]||x.category)}${t(x.period)?' · '+esc(t(x.period)):''}${t(x.role)?' · '+esc(t(x.role)):''}</div>
-      <h3>${link?`<a href="${esc(link)}" target="_blank" rel="noopener">${esc(t(x.title))} ↗</a>`:esc(t(x.title))}</h3>
-      ${t(x.metric)?`<div class="metric">${esc(t(x.metric))}</div>`:''}
-      <p>${esc(t(x.desc))}</p>
-      <div class="tags">${String(x.tags||'').split(',').map(s=>s.trim()).filter(Boolean).map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div></div></div>`}).join('')}</div></section>
+      ${title}${has(`portfolio.${i}.metric.@`)?E(`portfolio.${i}.metric.@`,'量化成果','div','metric'):''}
+      ${E(`portfolio.${i}.desc.@`,'說明','p','',false)}
+      <div class="tags">${String(x.tags||'').split(',').map(s=>s.trim()).filter(Boolean).map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div></div></div>`}).join('')}</div>
+    ${addBtn('portfolio','portfolio','新增作品')}</section>
   <section id="edu"><h2>${U.edu}</h2><div class="two"><div>
-    ${D.education.map(e=>`<div class="edu"><strong>${esc(t(e.degree))}</strong><span>${esc(t(e.school))} · ${esc(e.period)}</span></div>`).join('')}</div>
-    <div><h3 style="margin:0 0 10px;font-size:15px">${U.awards}</h3><ul class="plain">${D.awards.map(a=>`<li>${esc(t(a))}</li>`).join('')}</ul></div></div></section>`;
+    ${D.education.map((e,i)=>`<div class="edu">${ctl('education.'+i)}<strong>${E(`education.${i}.degree.@`,'學位','span')}</strong><span class="s">${E(`education.${i}.school.@`,'學校')} · ${E(`education.${i}.period`,'期間')}</span></div>`).join('')}
+    ${addBtn('education','education','新增學歷')}</div>
+    <div><h3 style="margin:0 0 10px;font-size:15px">${U.awards}</h3><ul class="plain">${D.awards.map((a,i)=>`<li>${E(`awards.${i}.@`,'獎項','span','',false)}${ctl('awards.'+i)}</li>`).join('')}</ul>${addBtn('awards','awards','新增獎項')}</div></div></section>`;
   document.getElementById('foot').textContent='© '+new Date().getFullYear()+' '+t(p.name);
   document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render();document.getElementById('work').scrollIntoView()});
+  if(EDIT)document.querySelectorAll('[data-p]').forEach(n=>{
+    n.addEventListener('input',()=>{dirty=true;setP(n.dataset.p,n.innerText.replace(/ /g,' ').trim())});
+    if(n.dataset.single==='1')n.addEventListener('keydown',e=>{if(e.key==='Enter')e.preventDefault()});
+  });
+  window.scrollTo(0,y);
 }
+
+/* ---- edit-mode actions ---- */
+function status(m,c=''){const s=document.getElementById('status');s.textContent=m;s.className=c}
+function modal(title,fields,hint){
+  const ov=document.createElement('div');ov.className='ov';
+  const d=document.createElement('div');d.className='dlg';d.innerHTML=`<h3>${esc(title)}</h3>${hint?`<div class="hint">${hint}</div>`:''}`;
+  fields.forEach(f=>{
+    const l=document.createElement('label');l.textContent=f.label;d.append(l);
+    let i;
+    if(f.type==='select'){i=document.createElement('select');f.options.forEach(([v,n])=>{const o=document.createElement('option');o.value=v;o.textContent=n;if(f.get()===v)o.selected=true;i.append(o)})}
+    else if(f.type==='file'){i=document.createElement('input');i.type='file';i.accept='image/*';
+      i.onchange=async()=>{const file=i.files[0];if(!file)return;if(file.size>2*1024*1024)return alert('圖片請小於 2MB');
+        try{const path='images/'+Date.now()+'-'+file.name.replace(/[^\w.\-]/g,'_');
+          const b64=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result.split(',')[1]);fr.readAsDataURL(file)});
+          status('上傳圖片中…');await gh(path,{method:'PUT',body:JSON.stringify({message:'Add image '+path,content:b64,branch:cfg().b})});
+          f.onUpload(path);status('圖片已上傳','ok');alert('圖片已上傳，路徑已填入。')}catch(e){status('圖片上傳失敗：'+e.message,'err')}};
+      d.append(i);return}
+    else{i=document.createElement('input');if(f.type==='password')i.type='password';i.value=f.get()||''}
+    if(f.ph)i.placeholder=f.ph;i.id=f.id||'';
+    i.oninput=i.onchange=()=>f.set(i.value);
+    d.append(i);
+  });
+  const a=document.createElement('div');a.className='acts';const ok=document.createElement('button');ok.className='primary';ok.textContent='完成';
+  ok.onclick=()=>{ov.remove();render()};a.append(ok);d.append(a);ov.append(d);document.body.append(ov);
+}
+const pf=(label,path,extra={})=>({label,get:()=>getP(path)||'',set:v=>{setP(path,v);dirty=true},...extra});
+function cardModal(i){
+  const b=`portfolio.${i}`,cats=UI[lang].cats;
+  modal('作品設定',[
+    {label:'類別',type:'select',options:Object.entries(cats),get:()=>D.portfolio[i].category,set:v=>{D.portfolio[i].category=v;dirty=true}},
+    pf('角色 EN',b+'.role.en'),pf('角色 中文',b+'.role.zh'),
+    pf('期間／單位 EN',b+'.period.en'),pf('期間／單位 中文',b+'.period.zh'),
+    pf('標籤（逗號分隔）',b+'.tags'),pf('連結 URL',b+'.link',{ph:'https://...'}),
+    pf('圖片路徑',b+'.image',{ph:'images/xxx.png',id:'imgPath'}),
+    {label:'或上傳圖片（需先設定 GitHub 連線）',type:'file',onUpload:p=>{setP(b+'.image',p);dirty=true;document.getElementById('imgPath').value=p}}
+  ]);
+}
+function profileModal(){
+  modal('聯絡資料',[pf('Email','profile.email'),pf('電話（留空則不公開）','profile.phone'),pf('LinkedIn URL','profile.linkedin'),pf('GitHub URL','profile.github')]);
+}
+
+document.addEventListener('click',e=>{
+  if(!EDIT)return;const b=e.target.closest('[data-act]');if(!b)return;
+  const {act,path,tpl}=b.dataset;
+  if(act==='profile')return profileModal();
+  if(act==='card')return cardModal(+path);
+  if(act==='add'){const arr=getArr(path);const o=TPL[tpl]();if(tpl==='portfolio'&&filter!=='all')o.category=filter;arr.push(o);dirty=true;return render()}
+  const ps=path.split('.'),idx=+ps.pop(),arr=getArr(ps.join('.'));
+  if(act==='del'){if(confirm('確定刪除？')){arr.splice(idx,1);dirty=true;render()}}
+  else{const j=idx+(act==='up'?-1:1);if(j<0||j>=arr.length)return;[arr[idx],arr[j]]=[arr[j],arr[idx]];dirty=true;render()}
+});
 document.getElementById('langBtn').onclick=()=>{lang=lang==='zh'?'en':'zh';localStorage.setItem('lang',lang);render()};
-fetch('data.json?'+Date.now()).then(r=>r.json()).then(d=>{D=d;render()})
- .catch(e=>{document.getElementById('app').innerHTML='<p>Failed to load data.json. If opening locally, run <code>python3 -m http.server</code> in this folder.</p>'});
+
+/* ---- GitHub ---- */
+const DEF={o:'yehpoyen',r:'BRUCE_Portfolio',b:'main',t:''};
+const cfg=()=>{try{return {...DEF,...JSON.parse(localStorage.getItem('cvadmin')||'{}')}}catch{return {...DEF}}};
+const saveCfg=c=>localStorage.setItem('cvadmin',JSON.stringify(c));
+const b64enc=s=>btoa(unescape(encodeURIComponent(s)));
+const b64dec=s=>decodeURIComponent(escape(atob(s.replace(/\n/g,''))));
+async function gh(path,opt={}){
+  const c=cfg();if(!c.o||!c.r||!c.t)throw new Error('請先按「⚙ GitHub 連線」填入 Token');
+  const res=await fetch(`https://api.github.com/repos/${c.o}/${c.r}/contents/${path}`+((opt.method||'GET')==='GET'?`?ref=${c.b}`:''),
+    {...opt,headers:{Authorization:'Bearer '+c.t,Accept:'application/vnd.github+json','Content-Type':'application/json'}});
+  if(!res.ok){let m=res.status+'';try{m+=' '+(await res.json()).message}catch{}throw new Error(m)}
+  return res.json();
+}
+function ghModal(){
+  const c=cfg();
+  modal('GitHub 連線',[
+    {label:'Owner（帳號）',get:()=>c.o,set:v=>{c.o=v.trim();saveCfg(c)}},
+    {label:'Repo',get:()=>c.r,set:v=>{c.r=v.trim();saveCfg(c)}},
+    {label:'Branch',get:()=>c.b,set:v=>{c.b=v.trim()||'main';saveCfg(c)}},
+    {label:'Personal Access Token（只需此 repo 的 Contents: Read and write）',type:'password',ph:'github_pat_...',get:()=>c.t,set:v=>{c.t=v.trim();saveCfg(c)}}
+  ],'Token 只存在這個瀏覽器的 localStorage。共用電腦請在用完後清空此欄。');
+}
+async function save(){
+  try{status('儲存中…');const r0=await gh('data.json');
+    const r=await gh('data.json',{method:'PUT',body:JSON.stringify({message:'Update CV data via inline editor',content:b64enc(JSON.stringify(D,null,2)+'\n'),sha:r0.sha,branch:cfg().b})});
+    sha=r.content.sha;dirty=false;status('已儲存！網站約 1 分鐘後更新','ok')}
+  catch(e){status('儲存失敗：'+e.message,'err')}
+}
+
+/* ---- boot ---- */
+async function load(){
+  if(EDIT&&cfg().t){try{const r=await gh('data.json');return JSON.parse(b64dec(r.content))}catch(e){console.warn('GitHub load failed, falling back',e)}}
+  return (await fetch('data.json?'+Date.now())).json();
+}
+if(EDIT){
+  document.body.classList.add('edit');document.getElementById('editbar').hidden=false;
+  document.getElementById('bGh').onclick=ghModal;
+  document.getElementById('bSave').onclick=save;
+  document.getElementById('bExport').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,2)],{type:'application/json'}));a.download='data.json';a.click()};
+  document.getElementById('bImport').onclick=()=>document.getElementById('fImport').click();
+  document.getElementById('fImport').onchange=async e=>{try{D=JSON.parse(await e.target.files[0].text());dirty=true;render();status('已匯入（尚未儲存）','ok')}catch{status('JSON 格式錯誤','err')}};
+  window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
+}
+load().then(d=>{D=d;D.summary=D.summary||[];D.competencies=D.competencies||[];D.experience=D.experience||[];D.portfolio=D.portfolio||[];D.education=D.education||[];D.awards=D.awards||[];render();
+  if(EDIT&&!cfg().t)status('尚未設定 Token，請先按「⚙ GitHub 連線」','err')})
+ .catch(e=>{console.error(e);document.getElementById('app').innerHTML='<p>Failed to load or render: '+esc(e&&e.message)+'. If opening locally, run <code>python3 -m http.server</code> in this folder.</p>'});
 </script>
 </body>
 </html>
