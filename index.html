@@ -254,7 +254,7 @@ const b64dec=s=>decodeURIComponent(escape(atob(s.replace(/\n/g,''))));
 async function gh(path,opt={}){
   const c=cfg();if(!c.o||!c.r||!c.t)throw new Error('請先按「⚙ GitHub 連線」填入 Token');
   const res=await fetch(`https://api.github.com/repos/${c.o}/${c.r}/contents/${path}`+((opt.method||'GET')==='GET'?`?ref=${c.b}`:''),
-    {...opt,headers:{Authorization:'Bearer '+c.t,Accept:'application/vnd.github+json','Content-Type':'application/json'}});
+    {...opt,cache:'no-store',headers:{Authorization:'Bearer '+c.t,Accept:'application/vnd.github+json','Content-Type':'application/json'}});
   if(!res.ok){let m=res.status+'';try{m+=' '+(await res.json()).message}catch{}throw new Error(m)}
   return res.json();
 }
