@@ -396,7 +396,7 @@
         "zh": ""
       },
       "desc": {
-        "en": "Provided performance feedback and contributed to performance reviews. [Edit: add scope, team size, outcomes]",
+        "en": "Provided performance feedback and contributed to performance reviews. \nScope:",
         "zh": "提供績效回饋並參與績效評核。[請補充：範圍、團隊規模、成果]"
       },
       "tags": "Performance Management",
@@ -422,7 +422,7 @@
         "zh": ""
       },
       "desc": {
-        "en": "Coached team members on technical decisions and career growth. [Edit: add a concrete example and result]",
+        "en": "Coached team members on technical decisions and career growth.\nJunior PM coaching: \n1. Project Scoping: identifying project scope and create a side project for on job training.\n2. Timeline: critical path, constrain tasks, etc.\n3. Cross function communication\n4. Structural reporting skill to customer.",
         "zh": "輔導成員的技術決策與職涯成長。[請補充：具體案例與結果]"
       },
       "tags": "Coaching, Mentoring",
