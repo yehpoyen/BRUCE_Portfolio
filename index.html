@@ -56,6 +56,15 @@ p{margin:0 0 14px}
 ul.plain{margin:0;padding-left:20px;font-size:15.5px;color:#d4d4d8}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:40px;border-top:1px solid var(--line)}
 
+
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.edu-grid .edu{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px 28px;margin:0}
+.edu-grid .edu strong{display:block;font-size:18px;font-weight:600;line-height:1.35;margin-bottom:6px}
+.aw-h{margin:40px 0 14px;font-size:14px;font-weight:300;letter-spacing:.14em;text-transform:uppercase}
+ul.awards{list-style:none;margin:0;padding:0}
+ul.awards li{position:relative;padding:12px 0 12px 22px;border-top:1px solid var(--line);font-size:16px;color:#d4d4d8}
+ul.awards li::before{content:"";position:absolute;left:0;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--grad)}
+
 /* ---- edit mode ---- */
 body.edit{padding-bottom:84px}
 body.edit .sumrow{margin-top:20px}
@@ -205,10 +214,11 @@ function render(){
       ${E(`portfolio.${i}.desc.@`,'說明','p','',false)}
       <div class="tags">${String(x.tags||'').split(',').map(s=>s.trim()).filter(Boolean).map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div></div></div>`}).join('')}</div>
     ${addBtn('portfolio','portfolio','新增作品')}</section>
-  <section id="edu"><h2>${U.edu}</h2><div class="two"><div>
-    ${D.education.map((e,i)=>`<div class="edu">${ctl('education.'+i)}<strong>${E(`education.${i}.degree.@`,'學位','span')}</strong><span class="s">${E(`education.${i}.school.@`,'學校')} · ${E(`education.${i}.period`,'期間')}</span></div>`).join('')}
-    ${addBtn('education','education','新增學歷')}</div>
-    <div><h3 style="margin:0 0 10px;font-size:15px">${U.awards}</h3><ul class="plain">${D.awards.map((a,i)=>`<li>${E(`awards.${i}.@`,'獎項','span','',false)}${ctl('awards.'+i)}</li>`).join('')}</ul>${addBtn('awards','awards','新增獎項')}</div></div></section>`;
+  <section id="edu"><h2>${U.edu}</h2>
+    <div class="edu-grid">${D.education.map((e,i)=>`<div class="edu">${ctl('education.'+i)}<strong>${E(`education.${i}.degree.@`,'學位','div')}</strong><span class="s">${E(`education.${i}.school.@`,'學校')} · ${E(`education.${i}.period`,'期間')}</span></div>`).join('')}</div>
+    ${addBtn('education','education','新增學歷')}
+    <h3 class="aw-h">${U.awards}</h3>
+    <ul class="awards">${D.awards.map((a,i)=>`<li>${E(`awards.${i}.@`,'獎項','span','',false)}${ctl('awards.'+i)}</li>`).join('')}</ul>${addBtn('awards','awards','新增獎項')}</section>`;
   document.getElementById('foot').textContent='© '+new Date().getFullYear()+' '+t(p.name);
   document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render();document.getElementById('work').scrollIntoView()});
   if(EDIT)document.querySelectorAll('[data-p]').forEach(n=>{
