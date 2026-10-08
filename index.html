@@ -21,7 +21,7 @@ section{padding:88px 0 0}
 h1{font-size:clamp(42px,6.2vw,80px);line-height:1.08;margin:72px 0 12px;letter-spacing:-.02em;font-weight:600}
 .sub{font-size:clamp(20px,2.4vw,28px);color:var(--muted);margin:0 0 24px;line-height:1.35}
 .contact{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px;color:var(--muted)}
-#about .summary{margin-top:40px;max-width:760px;color:#d4d4d8}
+#about .summary{margin-top:40px;color:#d4d4d8}
 h2{font-size:22px;font-weight:300;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin:0 0 32px;padding:0}
 h2::after{content:"";display:block;width:56px;height:3px;margin-top:14px;background:var(--grad);border-radius:2px}
 p{margin:0 0 14px}
@@ -58,8 +58,8 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:40px;border-t
 
 /* ---- edit mode ---- */
 body.edit{padding-bottom:84px}
-body.edit .sumrow{position:relative;padding-right:100px}
-body.edit .sumrow .ctl-row{top:4px}
+body.edit .sumrow{margin-top:20px}
+body.edit .sumrow .ctl-row{top:-18px;right:0}
 .sumrow{position:relative}
 .ed{outline:1px dashed rgba(111,155,255,.5);outline-offset:2px;border-radius:3px;cursor:text;min-width:2em;display:inline-block}
 h1.ed,p.ed,li.ed,h3.ed,div.ed{display:block}
@@ -292,8 +292,8 @@ function labelOf(path){
   const bi=path.indexOf('bullets');const extra=bi>=0?' '+(path[bi+1]+1):'';
   return sec+item+(f?' › '+FLD[f]+extra:'')
 }
-function computeDiff(){
-  const S=lang,T=lang==='zh'?'en':'zh',out=[];let conflicts=0;
+function computeDiff(S){
+  const T=S==='zh'?'en':'zh',out=[];let conflicts=0;
   pairs(D,[],[]);const ps=[];pairs(D,[],ps);
   ps.forEach(path=>{
     const n=getIn(D,path),b=getIn(BASE,path);
@@ -342,9 +342,20 @@ async function translate(items,S,T){
   }
   return res;
 }
-async function syncLangs(){
+function syncLangs(){
   if(!D)return;
-  const {items,conflicts,S,T}=computeDiff();
+  const ov=document.createElement('div');ov.className='ov';
+  const d=document.createElement('div');d.className='dlg';
+  d.innerHTML='<h3>同步中英文</h3><div class="hint">請選擇以哪個語言為準，另一個語言會被比對並提出新增、修改、刪除建議。每一項都會讓你勾選確認。</div>';
+  const a=document.createElement('div');a.className='acts';a.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;justify-content:flex-end';
+  const mk=(t,f,c)=>{const b=document.createElement('button');b.textContent=t;if(c)b.className=c;b.onclick=f;return b};
+  a.append(mk('取消',()=>ov.remove()),
+    mk('以英文為主 → 更新中文',()=>{ov.remove();runSync('en')},lang==='en'?'primary':''),
+    mk('以中文為主 → 更新英文',()=>{ov.remove();runSync('zh')},lang==='zh'?'primary':''));
+  d.append(a);ov.append(d);document.body.append(ov);
+}
+async function runSync(S0){
+  const {items,conflicts,S,T}=computeDiff(S0);
   const nm={zh:'中文',en:'英文'};
   if(!items.length){status(`${nm[S]}與${nm[T]}版本已一致`+(conflicts?`（${conflicts} 項兩邊都有改動，已略過）`:''),'ok');return}
   const need=items.filter(i=>i.kind!=='delete');
