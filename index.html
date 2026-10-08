@@ -90,6 +90,21 @@ li .ctl-row,.edu .ctl-row{position:static;display:inline-flex;margin-left:8px;ve
 .dlg .acts{margin-top:16px;text-align:right}
 .dlg button{font:inherit;border:1px solid #3a3a40;background:#1d1d21;color:#fff;border-radius:8px;padding:8px 18px;cursor:pointer}
 .dlg button.primary{background:var(--accent);border-color:var(--accent)}
+
+.sd{max-width:820px}
+.sd .row{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px;border-radius:12px;margin:10px 0;border:1px solid #2a2a2e}
+.sd .row.add{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.45)}
+.sd .row.edit{background:rgba(250,204,21,.10);border-color:rgba(250,204,21,.45)}
+.sd .row.delete{background:rgba(239,68,68,.10);border-color:rgba(239,68,68,.45)}
+.sd .row input[type=checkbox]{width:auto;margin-top:4px}
+.sd .tagk{display:inline-block;font-size:11px;font-weight:700;border-radius:4px;padding:1px 8px;margin-right:8px;color:#000}
+.sd .add .tagk{background:#4ade80}.sd .edit .tagk{background:#facc15}.sd .delete .tagk{background:#f87171}
+.sd .lbl{font-size:12px;color:var(--muted)}
+.sd .src{font-size:14px;color:#d4d4d8;margin:6px 0;white-space:pre-wrap}
+.sd .old{font-size:14px;color:#9a9aa2;text-decoration:line-through;white-space:pre-wrap;margin:6px 0}
+.sd textarea{width:100%;min-height:70px;font:inherit;font-size:14px;padding:8px 10px;border:1px solid #3a3a40;border-radius:8px;background:#0d0d0f;color:#fff;resize:vertical}
+.sd .sum{font-size:13px;color:var(--muted);margin:6px 0}
+.sd .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -101,6 +116,8 @@ li .ctl-row,.edu .ctl-row{position:static;display:inline-flex;margin-left:8px;ve
 <footer><span id="foot"></span></footer>
 <div class="editbar" id="editbar" hidden>
   <button id="bGh">⚙ GitHub 連線</button>
+  <button id="bSync">🔄 同步中英文</button>
+  <button id="bAi">🔑 翻譯設定</button>
   <button class="primary" id="bSave">儲存到 GitHub</button>
   <button id="bExport">匯出 JSON</button>
   <button id="bImport">匯入 JSON</button>
@@ -253,6 +270,122 @@ document.addEventListener('click',e=>{
 });
 document.getElementById('langBtn').onclick=()=>{lang=lang==='zh'?'en':'zh';localStorage.setItem('lang',lang);render()};
 
+
+/* ---- bilingual sync ---- */
+const clone=o=>JSON.parse(JSON.stringify(o));
+let BASE=null;
+const SEC={summary:'簡介',competencies:'核心能力',experience:'工作經歷',portfolio:'作品集',education:'學歷',awards:'獎項',profile:'基本資料'};
+const FLD={title:'標題',text:'內容',role:'職稱／角色',location:'地點',period:'期間',tagline:'簡述',bullets:'重點',degree:'學位',school:'學校',metric:'量化成果',desc:'說明',name:'姓名'};
+const getIn=(o,p)=>p.reduce((a,k)=>a==null?a:a[k],o);
+function pairs(node,path,out){
+  if(Array.isArray(node)){node.forEach((x,i)=>pairs(x,path.concat(i),out));return}
+  if(node&&typeof node==='object'){const ks=Object.keys(node);
+    if(ks.length&&ks.every(k=>k==='en'||k==='zh')&&ks.some(k=>typeof node[k]==='string')){out.push(path);return}
+    ks.forEach(k=>pairs(node[k],path.concat(k),out))}
+}
+function labelOf(path){
+  const sec=SEC[path[0]]||path[0];let item='';
+  if(typeof path[1]==='number'){const it=D[path[0]][path[1]];
+    const nm=it&&(it.company||(it.title&&(it.title.zh||it.title.en))||(it.degree&&(it.degree.zh||it.degree.en)));
+    item=' #'+(path[1]+1)+(nm&&typeof nm==='string'?'（'+nm.slice(0,24)+'）':'')}
+  const f=[...path].reverse().find(k=>typeof k==='string'&&FLD[k]);
+  const bi=path.indexOf('bullets');const extra=bi>=0?' '+(path[bi+1]+1):'';
+  return sec+item+(f?' › '+FLD[f]+extra:'')
+}
+function computeDiff(){
+  const S=lang,T=lang==='zh'?'en':'zh',out=[];let conflicts=0;
+  pairs(D,[],[]);const ps=[];pairs(D,[],ps);
+  ps.forEach(path=>{
+    const n=getIn(D,path),b=getIn(BASE,path);
+    const s=(n[S]||'').trim(),t=(n[T]||'').trim();
+    const bs=b?(b[S]||'').trim():undefined,bt=b?(b[T]||'').trim():undefined;
+    const base={id:path.join('.'),path,label:labelOf(path),src:s,old:t};
+    if(s&&!t)out.push({...base,kind:'add'});
+    else if(!s&&t)out.push({...base,kind:'delete'});
+    else if(s&&t&&b&&s!==bs){ if(t===bt)out.push({...base,kind:'edit'}); else conflicts++ }
+  });
+  return {items:out,conflicts,S,T};
+}
+const AI_DEF={engine:'gemini',gkey:'',gmodel:'gemini-2.5-flash',key:'',model:'claude-sonnet-5-5'};
+const aiCfg=()=>{try{return {...AI_DEF,...JSON.parse(localStorage.getItem('cvai')||'{}')}}catch{return {...AI_DEF}}};
+function aiModal(){
+  const c=aiCfg(),sv=()=>localStorage.setItem('cvai',JSON.stringify(c));
+  modal('翻譯設定',[
+    {label:'翻譯引擎',type:'select',options:[['gemini','Google Gemini'],['claude','Anthropic Claude']],get:()=>c.engine,set:v=>{c.engine=v;sv()}},
+    {label:'Gemini API Key（aistudio.google.com/apikey 建立，有免費額度）',type:'password',ph:'AIza...',get:()=>c.gkey,set:v=>{c.gkey=v.trim();sv()}},
+    {label:'Gemini Model',get:()=>c.gmodel,set:v=>{c.gmodel=v.trim()||AI_DEF.gmodel;sv()}},
+    {label:'Claude API Key（選填，console.anthropic.com，另計費）',type:'password',ph:'sk-ant-...',get:()=>c.key,set:v=>{c.key=v.trim();sv()}},
+    {label:'Claude Model',get:()=>c.model,set:v=>{c.model=v.trim()||AI_DEF.model;sv()}}
+  ],'Key 只存在這個瀏覽器，翻譯時會直接從你的瀏覽器送到所選服務。Gemini App 的訂閱與 API 是分開的，需另外到 AI Studio 取得 API Key。');
+}
+const aiReady=()=>{const c=aiCfg();return c.engine==='gemini'?!!c.gkey:!!c.key};
+async function translate(items,S,T){
+  const name={zh:'Traditional Chinese (Taiwan)',en:'English'};const res={};
+  const c=aiCfg();
+  for(let i=0;i<items.length;i+=25){
+    const chunk=items.slice(i,i+25);
+    const prompt=`You are a professional translator for resumes/CVs (medical device project management). Translate each item from ${name[S]} to ${name[T]}. Keep proper nouns, company names, standards (FDA, MDR, ISO 13485, IEC 60601) and acronyms unchanged. Keep any [bracketed placeholders], translating their content. Preserve meaning exactly; do not add or remove facts. If "existing" is given, keep its terminology and style, updating it only to match the new source text. Return ONLY a JSON object mapping each id to its translated string, no other text.\n\n`+JSON.stringify(chunk.map(x=>({id:x.id,context:x.label,text:x.src,existing:x.kind==='edit'?x.old:undefined})));
+    let txt;
+    if(c.engine==='gemini'){
+      const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(c.gmodel)}:generateContent`,{method:'POST',headers:{'content-type':'application/json','x-goog-api-key':c.gkey},
+        body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:0.2}})});
+      if(!r.ok){let m=r.status+'';try{m+=' '+(await r.json()).error.message}catch{}throw new Error(m)}
+      const j=await r.json();txt=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('');
+    }else{
+      const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':c.key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+        body:JSON.stringify({model:c.model,max_tokens:8000,messages:[{role:'user',content:prompt}]})});
+      if(!r.ok){let m=r.status+'';try{m+=' '+(await r.json()).error.message}catch{}throw new Error(m)}
+      txt=(await r.json()).content.map(b=>b.text||'').join('');
+    }
+    const m=(txt||'').match(/\{[\s\S]*\}/);if(!m)throw new Error('翻譯結果格式錯誤');
+    Object.assign(res,JSON.parse(m[0]));
+  }
+  return res;
+}
+async function syncLangs(){
+  if(!D)return;
+  const {items,conflicts,S,T}=computeDiff();
+  const nm={zh:'中文',en:'英文'};
+  if(!items.length){status(`${nm[S]}與${nm[T]}版本已一致`+(conflicts?`（${conflicts} 項兩邊都有改動，已略過）`:''),'ok');return}
+  const need=items.filter(i=>i.kind!=='delete');
+  if(need.length){
+    if(!aiReady()){status('需要先設定翻譯用 API Key','err');aiModal();return}
+    status(`翻譯 ${need.length} 項中…`);
+    try{const tr=await translate(need,S,T);need.forEach(i=>i.proposed=(tr[i.id]||'').trim())}
+    catch(e){status('翻譯失敗：'+e.message,'err');return}
+  }
+  items.forEach(i=>{if(i.kind==='delete')i.proposed=''});
+  status('請檢視差異','ok');
+  reviewDiff(items,conflicts,S,T);
+}
+function reviewDiff(items,conflicts,S,T){
+  const nm={zh:'中文',en:'英文'},kn={add:'新增',edit:'修改',delete:'刪除'};
+  const ov=document.createElement('div');ov.className='ov';
+  const d=document.createElement('div');d.className='dlg sd';
+  const cnt=k=>items.filter(i=>i.kind===k).length;
+  d.innerHTML=`<h3>同步${nm[T]}版本（以目前的${nm[S]}為準）</h3>
+   <div class="sum">新增 ${cnt('add')} ・修改 ${cnt('edit')} ・刪除 ${cnt('delete')}${conflicts?` ・另有 ${conflicts} 項兩邊都被改過，已略過`:''}。請逐項確認，可直接編輯建議內容；尚未套用前不會改動任何資料。</div>`;
+  const rows=items.map(it=>{
+    const r=document.createElement('div');r.className='row '+it.kind;
+    const cb=document.createElement('input');cb.type='checkbox';cb.checked=true;it.cb=cb;
+    const body=document.createElement('div');
+    body.innerHTML=`<div><span class="tagk">${kn[it.kind]}</span><span class="lbl">${esc(it.label)}</span></div>
+      ${it.src?`<div class="lbl" style="margin-top:6px">${nm[S]}（來源）</div><div class="src">${esc(it.src)}</div>`:''}
+      ${it.kind==='edit'?`<div class="lbl">${nm[T]}（目前）</div><div class="old">${esc(it.old)}</div>`:''}
+      ${it.kind==='delete'?`<div class="lbl">${nm[T]}將被清空：</div><div class="old">${esc(it.old)}</div>`:''}`;
+    if(it.kind!=='delete'){const lb=document.createElement('div');lb.className='lbl';lb.textContent=`${nm[T]}（建議，可編輯）`;
+      const ta=document.createElement('textarea');ta.value=it.proposed;ta.oninput=()=>it.proposed=ta.value;body.append(lb,ta)}
+    r.append(cb,body);return r});
+  const list=document.createElement('div');rows.forEach(r=>list.append(r));d.append(list);
+  const a=document.createElement('div');a.className='acts';
+  const mk=(t,f,c)=>{const b=document.createElement('button');b.textContent=t;if(c)b.className=c;b.onclick=f;return b};
+  a.append(mk('全選',()=>items.forEach(i=>i.cb.checked=true)),mk('全不選',()=>items.forEach(i=>i.cb.checked=false)),
+    mk('取消',()=>{ov.remove();status('已取消同步')}),
+    mk('套用選取項目',()=>{let n=0;items.forEach(i=>{if(!i.cb.checked)return;const node=getIn(D,i.path);node[T]=i.kind==='delete'?'':(i.proposed||'').trim();n++});
+      ov.remove();if(n){dirty=true;render();status(`已套用 ${n} 項，請檢查後按「儲存到 GitHub」`,'ok')}},'primary'));
+  d.append(a);ov.append(d);document.body.append(ov);
+}
+
 /* ---- GitHub ---- */
 const DEF={o:'yehpoyen',r:'BRUCE_Portfolio',b:'main',t:''};
 const cfg=()=>{try{return {...DEF,...JSON.parse(localStorage.getItem('cvadmin')||'{}')}}catch{return {...DEF}}};
@@ -278,7 +411,7 @@ function ghModal(){
 async function save(){
   try{status('儲存中…');const r0=await gh('data.json');
     const r=await gh('data.json',{method:'PUT',body:JSON.stringify({message:'Update CV data via inline editor',content:b64enc(JSON.stringify(D,null,2)+'\n'),sha:r0.sha,branch:cfg().b})});
-    sha=r.content.sha;dirty=false;status('已儲存！網站約 1 分鐘後更新','ok')}
+    sha=r.content.sha;dirty=false;BASE=clone(D);status('已儲存！網站約 1 分鐘後更新','ok')}
   catch(e){status('儲存失敗：'+e.message,'err')}
 }
 
@@ -291,12 +424,14 @@ if(EDIT){
   document.body.classList.add('edit');document.getElementById('editbar').hidden=false;
   document.getElementById('bGh').onclick=ghModal;
   document.getElementById('bSave').onclick=save;
+  document.getElementById('bSync').onclick=syncLangs;
+  document.getElementById('bAi').onclick=aiModal;
   document.getElementById('bExport').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,2)],{type:'application/json'}));a.download='data.json';a.click()};
   document.getElementById('bImport').onclick=()=>document.getElementById('fImport').click();
   document.getElementById('fImport').onchange=async e=>{try{D=JSON.parse(await e.target.files[0].text());dirty=true;render();status('已匯入（尚未儲存）','ok')}catch{status('JSON 格式錯誤','err')}};
   window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
 }
-load().then(d=>{D=d;D.summary=D.summary||[];D.competencies=D.competencies||[];D.experience=D.experience||[];D.portfolio=D.portfolio||[];D.education=D.education||[];D.awards=D.awards||[];render();
+load().then(d=>{D=d;D.summary=D.summary||[];D.competencies=D.competencies||[];D.experience=D.experience||[];D.portfolio=D.portfolio||[];D.education=D.education||[];D.awards=D.awards||[];BASE=clone(D);render();
   if(EDIT&&!cfg().t)status('尚未設定 Token，請先按「⚙ GitHub 連線」','err')})
  .catch(e=>{console.error(e);document.getElementById('app').innerHTML='<p>Failed to load or render: '+esc(e&&e.message)+'. If opening locally, run <code>python3 -m http.server</code> in this folder.</p>'});
 </script>
