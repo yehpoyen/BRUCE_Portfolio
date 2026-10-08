@@ -61,7 +61,7 @@
       },
       "text": {
         "en": "Cross-Functional Leadership, Schedule & Critical Path Management, Vendor/Supplier Management, Process Automation (Google Apps Script).",
-        "zh": "跨部門領導、時程與要徑管理、供應商管理、流程自動化（Google Apps Script）。"
+        "zh": "跨部門領導、時程與要徑管理、供應商管理、流程自動化（Google Apps Script,  Microsoft Power Automate, Python）。"
       }
     },
     {
@@ -81,7 +81,17 @@
       },
       "text": {
         "en": "Hiring & interviewing, performance feedback, coaching & career development, cross-region team management, cross-functional alignment (EE/ME/SW/Quality/Supply Chain).",
-        "zh": "招募與面試、績效回饋、教練輔導與職涯發展、跨地區團隊管理、跨部門對齊（電子／機構／軟體／品質／供應鏈）。"
+        "zh": "定義JD，績效回饋、教練輔導與職涯發展、跨地區團隊管理、跨部門對齊（電子／機構／軟體／生產／品質／供應鏈）。"
+      }
+    },
+    {
+      "title": {
+        "en": "",
+        "zh": "產品上市策略"
+      },
+      "text": {
+        "en": "",
+        "zh": ""
       }
     }
   ],
@@ -423,7 +433,7 @@
       },
       "desc": {
         "en": "Coached team members on technical decisions and career growth.\nProject assistant transfer to Junior PM coaching: \n1. Project Scoping: identifying project scope and create a side project for on job training.\n2. Timeline: critical path, constrain tasks, etc.\n3. Cross function communication\n4. Structural reporting skill to customer.",
-        "zh": "輔導成員的技術決策與職涯成長。[請補充：具體案例與結果]"
+        "zh": "輔導成員的技術決策與職涯成長。\nProject assistant transfer to Junior PM coaching: \n1. Project Scoping: identifying project scope and create a side project for on job training.\n2. Timeline: critical path, constrain tasks, etc.\n3. Cross function communication\n4. Structural reporting skill to customer."
       },
       "tags": "Coaching, Mentoring",
       "link": "",
