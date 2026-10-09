@@ -2,7 +2,7 @@
   "profile": {
     "name": {
       "en": "Bruce Yeh",
-      "zh": "葉柏彥"
+      "zh": "葉柏言"
     },
     "title": {
       "en": "Project Manager | Medical Imaging & Electromechanical Systems",
@@ -61,7 +61,7 @@
       },
       "text": {
         "en": "Cross-Functional Leadership, Schedule & Critical Path Management, Vendor/Supplier Management, Process Automation (Google Apps Script).",
-        "zh": "跨部門領導、時程與要徑管理、供應商管理、流程自動化（Google Apps Script,  Microsoft Power Automate, Python）。"
+        "zh": "跨部門領導、時程與要徑管理、供應商管理、流程自動化（Google Apps Script）。"
       }
     },
     {
@@ -76,22 +76,22 @@
     },
     {
       "title": {
-        "en": "People & Cross-Region Leadership",
-        "zh": "人員與跨地區領導"
+        "en": "People & Resource Management",
+        "zh": "人員與資源管理"
       },
       "text": {
-        "en": "Hiring & interviewing, performance feedback, coaching & career development, cross-region team management, cross-functional alignment (EE/ME/SW/Quality/Supply Chain).",
-        "zh": "定義JD，績效回饋、教練輔導與職涯發展、跨地區團隊管理、跨部門對齊（電子／機構／軟體／生產／品質／供應鏈）。"
+        "en": "Man-month forecasting (ME/EE/SW), resource conflict negotiation and prioritization, career-aware task assignment, competency-based reviews, interview scoring, cross-region team coordination.",
+        "zh": "ME/EE/SW 人力工時預估、資源衝突協商與優先排序、考量職涯發展的任務分配、能力導向的績效評核、面試評分、跨地區團隊協調。"
       }
     },
     {
       "title": {
-        "en": "",
-        "zh": "產品上市策略"
+        "en": "Manufacturing & Yield",
+        "zh": "製造與良率"
       },
       "text": {
-        "en": "",
-        "zh": ""
+        "en": "Multi-cavity plastic tooling, metal fabrication and surface treatment, yield improvement from design transfer through post-market surveillance.",
+        "zh": "多穴塑膠模具、金屬加工與表面處理、從設計轉移到上市後監督的良率改善。"
       }
     }
   ],
@@ -120,8 +120,8 @@
           "zh": "技術問題解決：於關鍵製造階段提供戰術領導；協調工程團隊進行根因分析，解決客訴流程中的複雜藥液洩漏問題，降低專案風險並確保時程一致。"
         },
         {
-          "en": "QMS Leadership & Compliance: Spearheaded the establishment of the department's Quality Management System (QMS) from the ground up. Led the migration of product technical files to align with FDA/MDR standards and rigorous Design Control processes.",
-          "zh": "QMS 領導與合規：從零主導建立部門品質管理系統（QMS）；主導產品技術文件遷移，使其符合 FDA/MDR 法規與嚴謹的設計管制流程。"
+          "en": "QMS Leadership & Compliance: Spearheaded the establishment of the department's Quality Management System (QMS) from the ground up. Partnered with Swiss HQ and a European consulting firm to build a new QMS for contract manufacturing on a medical device V-model, passing the Intertek audit. Led the migration of product technical files to FDA/MDR and Design Control standards.",
+          "zh": "QMS 領導與合規：從零主導建立部門品質管理系統（QMS）；與瑞士總部及歐洲顧問公司密切合作，依醫療器材 V-model 為合約製造建立新的 QMS，並通過 Intertek 稽核；主導產品技術文件遷移，符合 FDA/MDR 與設計管制標準。"
         },
         {
           "en": "Process Improvement & Tooling: Independently developed and deployed a custom Project Tracking System (Python/Google Apps Script) to centralize sample tracking and cross-functional Lessons Learned databases.",
@@ -130,6 +130,14 @@
         {
           "en": "Vendor Strategy & Negotiation: Evaluated in-house technical resource gaps and negotiated an outsourced tooling strategy with the CTO, achieving a 9x cost reduction by holding external suppliers accountable to development standards.",
           "zh": "供應商策略與談判：評估內部技術資源缺口，與 CTO 協商外包模具策略，要求外部供應商遵循開發標準，達成 9 倍成本降低。"
+        },
+        {
+          "en": "Tooling & Yield: Ran plastic tooling in parallel on every project, including multi-cavity molds (4+ cavities) for a 17-component auto-injector; raised post-production yield to ~90%.",
+          "zh": "模具與良率：每個專案皆同步進行塑膠模具開發，包含 17 個部件 autoinjector 的多穴模具（4 穴以上）；量產後良率提升至約 90%。"
+        },
+        {
+          "en": "Global Team Coordination: Worked across a development team spanning the US, Switzerland, Sweden and Taiwan.",
+          "zh": "跨國團隊協作：與涵蓋美國、瑞士、瑞典、台灣的開發團隊協作。"
         }
       ]
     },
@@ -163,6 +171,10 @@
         {
           "en": "Strategic Investment & Architecture: Spearheaded a 4-person strategic task force to evaluate and secure internal corporate investment in an arm/mounting manufacturer (HiGrade), driving vertical integration of hardware solutions for operating rooms.",
           "zh": "策略投資與架構：領導 4 人策略小組，評估並爭取公司內部對支臂／吊臂製造商（HiGrade）的投資，推動手術室硬體解決方案的垂直整合。"
+        },
+        {
+          "en": "Global Team Coordination: Coordinated a development team across Korea, Taiwan and China, and a sales team across the US, the Netherlands (Europe), China, Israel (Middle East), Japan, Korea and India.",
+          "zh": "跨國團隊協調：協調涵蓋韓國、台灣、中國的開發團隊，以及涵蓋美國、荷蘭（歐洲）、中國、以色列（中東）、日本、韓國、印度的銷售團隊。"
         }
       ]
     },
@@ -196,6 +208,10 @@
         {
           "en": "Manufacturing & Build Phases: Managed design transfer with R&D and process engineers during build phases across a 5,000+ employee manufacturing site, coordinating with Supply Chain and Engineering on build quantities and configurations to ensure scalable production.",
           "zh": "製造與試產階段：於 5,000 人以上的製造廠區，與研發及製程工程師管理設計轉移，並與供應鏈及工程協調試產數量與配置，確保可量產擴展。"
+        },
+        {
+          "en": "Yield & Metal Parts: Managed metal structural parts, stainless steel housings and surface treatment/painting; raised insulin pump assembly yield from ~60% to 85% and endoscopy yield to ~90%.",
+          "zh": "良率與金屬件：管理金屬結構件、不鏽鋼外殼及表面處理／噴漆；胰島素幫浦組裝良率由約 60% 提升至 85%，內視鏡良率提升至約 90%。"
         },
         {
           "en": "Requirements Engineering: Led customer-facing requirements definition, translating ambiguous clinical concepts into executable hardware and system specifications.",
@@ -272,14 +288,14 @@
         "zh": "SHL Medical"
       },
       "metric": {
-        "en": "FDA/MDR-aligned technical files",
-        "zh": "技術文件符合 FDA/MDR"
+        "en": "Passed Intertek audit; FDA/MDR-aligned files",
+        "zh": "通過 Intertek 稽核；技術文件符合 FDA/MDR"
       },
       "desc": {
-        "en": "Established the department's Quality Management System from scratch and migrated product technical files to meet FDA/MDR and Design Control requirements.",
-        "zh": "從零建立部門品質管理系統，並遷移產品技術文件以符合 FDA/MDR 與設計管制要求。"
+        "en": "Established the department QMS from scratch. Worked with Swiss HQ and a European consulting firm to build a new QMS for contract manufacturing on a medical device V-model and compliance perspective, and migrated technical files to FDA/MDR and Design Control standards.",
+        "zh": "從零建立部門 QMS；與瑞士總部及歐洲顧問公司合作，依醫療器材 V-model 與合規角度為合約製造建立新 QMS，並遷移技術文件以符合 FDA/MDR 與設計管制標準。"
       },
-      "tags": "QMS, FDA, MDR, Design Control",
+      "tags": "QMS, V-model, Intertek, FDA, MDR",
       "link": "",
       "image": ""
     },
@@ -390,58 +406,6 @@
     {
       "category": "people",
       "title": {
-        "en": "Performance Feedback & Reviews",
-        "zh": "績效評核與回饋"
-      },
-      "role": {
-        "en": "Reviewer",
-        "zh": "評核者"
-      },
-      "period": {
-        "en": "",
-        "zh": ""
-      },
-      "metric": {
-        "en": "",
-        "zh": ""
-      },
-      "desc": {
-        "en": "Provided performance feedback and contributed to performance reviews.",
-        "zh": "提供績效回饋並參與績效評核。[請補充：範圍、團隊規模、成果]"
-      },
-      "tags": "Performance Management",
-      "link": "",
-      "image": ""
-    },
-    {
-      "category": "people",
-      "title": {
-        "en": "Coaching & Career Development",
-        "zh": "教練輔導與職涯發展"
-      },
-      "role": {
-        "en": "Coach / Mentor",
-        "zh": "教練／導師"
-      },
-      "period": {
-        "en": "",
-        "zh": ""
-      },
-      "metric": {
-        "en": "",
-        "zh": ""
-      },
-      "desc": {
-        "en": "Coached team members on technical decisions and career growth.\nProject assistant transfer to Junior PM coaching: \n1. Project Scoping: identifying project scope and create a side project for on job training.\n2. Timeline: critical path, constrain tasks, etc.\n3. Cross function communication\n4. Structural reporting skill to customer.",
-        "zh": "輔導成員的技術決策與職涯成長。\nProject assistant transfer to Junior PM coaching: \n1. Project Scoping: identifying project scope and create a side project for on job training.\n2. Timeline: critical path, constrain tasks, etc.\n3. Cross function communication\n4. Structural reporting skill to customer."
-      },
-      "tags": "Coaching, Mentoring",
-      "link": "",
-      "image": ""
-    },
-    {
-      "category": "people",
-      "title": {
         "en": "Cross-Region Team Management",
         "zh": "跨地區團隊管理"
       },
@@ -458,36 +422,10 @@
         "zh": ""
       },
       "desc": {
-        "en": "Aligned global stakeholders, vendors and manufacturing partners across regions on schedule, scope and quality.",
+        "en": "Aligned global stakeholders, vendors and manufacturing partners across regions on schedule, scope and quality. [Edit: add regions and team sizes]",
         "zh": "協調跨地區的利害關係人、供應商與製造夥伴，對齊時程、範圍與品質。[請補充：地區與團隊規模]"
       },
       "tags": "Global Teams, Stakeholder Management",
-      "link": "",
-      "image": ""
-    },
-    {
-      "category": "management",
-      "title": {
-        "en": "CM QMS Establishment",
-        "zh": "CM 品質系統（QMS）建立"
-      },
-      "role": {
-        "en": "Contributor",
-        "zh": "參與者"
-      },
-      "period": {
-        "en": "[confirm company]",
-        "zh": "[請確認公司]"
-      },
-      "metric": {
-        "en": "CM/ODM-side quality system",
-        "zh": "CM/ODM 端品質系統"
-      },
-      "desc": {
-        "en": "Took part in establishing the quality management system at a contract manufacturer.",
-        "zh": "參與合約製造商品質管理系統的建立。"
-      },
-      "tags": "QMS, CM, ODM",
       "link": "",
       "image": ""
     },
@@ -514,6 +452,214 @@
         "zh": "跨部門產品開發，涵蓋原型試製、法規符合、設計轉移至製造及上市。"
       },
       "tags": "NPI, Design Transfer, Regulatory",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "people",
+      "title": {
+        "en": "Engineer Interviewing & Scoring",
+        "zh": "工程師面試與評分"
+      },
+      "role": {
+        "en": "Interviewer",
+        "zh": "面試官"
+      },
+      "period": {
+        "en": "",
+        "zh": ""
+      },
+      "metric": {
+        "en": "",
+        "zh": ""
+      },
+      "desc": {
+        "en": "Participated in engineering candidate interviews and scored candidates against role requirements.",
+        "zh": "參與工程人員面試，並依職缺需求對候選人評分。"
+      },
+      "tags": "Hiring, Interviewing",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "people",
+      "title": {
+        "en": "Performance & Competency Reviews",
+        "zh": "績效與能力評核"
+      },
+      "role": {
+        "en": "Reviewer",
+        "zh": "評核者"
+      },
+      "period": {
+        "en": "",
+        "zh": ""
+      },
+      "metric": {
+        "en": "Quantified star ratings + competency assessment",
+        "zh": "星等量化評分＋能力評估"
+      },
+      "desc": {
+        "en": "In annual reviews, gave feedback with quantified star ratings on each member's deliverables, plus a competency assessment.",
+        "zh": "年度考核除提供回饋與成員交付物的星等量化評分，也進行每位成員的能力評估。"
+      },
+      "tags": "Performance Management, Competency",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "people",
+      "title": {
+        "en": "Career-aware Task Assignment",
+        "zh": "考量職涯的任務分配"
+      },
+      "role": {
+        "en": "Project Manager",
+        "zh": "專案經理"
+      },
+      "period": {
+        "en": "",
+        "zh": ""
+      },
+      "metric": {
+        "en": "",
+        "zh": ""
+      },
+      "desc": {
+        "en": "Assigned tasks with each engineer's career plan in mind, factoring in next-stage skills training.",
+        "zh": "分配任務時考量各部門成員的職涯規劃，並納入下一階段職能訓練。"
+      },
+      "tags": "Coaching, Career Development",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "people",
+      "title": {
+        "en": "Resource Planning & Conflict Negotiation",
+        "zh": "人力規劃與資源衝突協商"
+      },
+      "role": {
+        "en": "Project Manager",
+        "zh": "專案經理"
+      },
+      "period": {
+        "en": "",
+        "zh": ""
+      },
+      "metric": {
+        "en": "ME / EE / SW man-month forecasting",
+        "zh": "ME／EE／SW 人力工時預估"
+      },
+      "desc": {
+        "en": "Forecast ME, EE and SW man-months across projects, negotiated resource conflicts and prioritized work.",
+        "zh": "預估各專案 ME、EE、SW 的人力工時，協商資源衝突並排定優先順序。"
+      },
+      "tags": "Resource Planning, Prioritization",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "Yield Improvement",
+        "zh": "良率改善"
+      },
+      "role": {
+        "en": "Project Manager",
+        "zh": "專案經理"
+      },
+      "period": {
+        "en": "Altek / SHL",
+        "zh": "Altek / SHL"
+      },
+      "metric": {
+        "en": "Insulin pump ~60% → 85%; endoscopy & auto-injector ~90%",
+        "zh": "胰島素幫浦約 60%→85%；內視鏡與 autoinjector 約 90%"
+      },
+      "desc": {
+        "en": "Drove yield improvement from design transfer through mass production and post-market surveillance.",
+        "zh": "從設計轉移、量產到上市後監督，持續推動良率改善。"
+      },
+      "tags": "Yield, Design Transfer, Post-market Surveillance",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "Multi-cavity Tooling for Auto-injector",
+        "zh": "Autoinjector 多穴模具"
+      },
+      "role": {
+        "en": "Project Manager",
+        "zh": "專案經理"
+      },
+      "period": {
+        "en": "SHL Medical",
+        "zh": "SHL Medical"
+      },
+      "metric": {
+        "en": "17 components, 4+ cavities in parallel",
+        "zh": "17 個部件、4 穴以上同步開發"
+      },
+      "desc": {
+        "en": "Developed plastic tooling in parallel for an auto-injector of up to 17 components using multi-cavity molds. Every project included plastic tooling development.",
+        "zh": "同步開發多達 17 個部件之 autoinjector 的多穴塑膠模具；每個專案皆包含塑膠模具開發。"
+      },
+      "tags": "Plastic Molding, Tooling",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "management",
+      "title": {
+        "en": "Metal Parts & Surface Treatment",
+        "zh": "金屬件與表面處理"
+      },
+      "role": {
+        "en": "Project Manager",
+        "zh": "專案經理"
+      },
+      "period": {
+        "en": "Altek Group",
+        "zh": "Altek Group"
+      },
+      "metric": {
+        "en": "",
+        "zh": ""
+      },
+      "desc": {
+        "en": "Managed structural metal parts (e.g., middle frame, PCBA holder), stainless steel housings, surface treatment and painting.",
+        "zh": "管理金屬結構件（如 middle frame、PCBA holder）、不鏽鋼外殼，以及表面處理與噴漆。"
+      },
+      "tags": "Metal Fabrication, Surface Treatment",
+      "link": "",
+      "image": ""
+    },
+    {
+      "category": "people",
+      "title": {
+        "en": "Cross-Region Team Management",
+        "zh": "跨地區團隊管理"
+      },
+      "role": {
+        "en": "Product Manager / Project Manager",
+        "zh": "產品經理／專案經理"
+      },
+      "period": {
+        "en": "Advantech / SHL Medical",
+        "zh": "Advantech / SHL Medical"
+      },
+      "metric": {
+        "en": "Teams spanning 10 countries",
+        "zh": "團隊橫跨 10 個國家"
+      },
+      "desc": {
+        "en": "Advantech: development team across Korea, Taiwan and China; sales team across the US, the Netherlands (Europe), China, Israel (Middle East), Japan, Korea and India. SHL Medical: development team across the US, Switzerland, Sweden and Taiwan.",
+        "zh": "Advantech：開發團隊涵蓋韓國、台灣、中國；銷售團隊涵蓋美國、荷蘭（歐洲）、中國、以色列（中東）、日本、韓國、印度。SHL Medical：開發團隊涵蓋美國、瑞士、瑞典、台灣。"
+      },
+      "tags": "Global Teams, Stakeholder Management",
       "link": "",
       "image": ""
     }

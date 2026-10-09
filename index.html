@@ -234,6 +234,7 @@ function modal(title,fields,hint){
   const ov=document.createElement('div');ov.className='ov';
   const d=document.createElement('div');d.className='dlg';d.innerHTML=`<h3>${esc(title)}</h3>${hint?`<div class="hint">${hint}</div>`:''}`;
   fields.forEach(f=>{
+    if(f.type==='custom'){d.append(f.build());return}
     const l=document.createElement('label');l.textContent=f.label;d.append(l);
     let i;
     if(f.type==='select'){i=document.createElement('select');f.options.forEach(([v,n])=>{const o=document.createElement('option');o.value=v;o.textContent=n;if(f.get()===v)o.selected=true;i.append(o)})}
@@ -323,7 +324,29 @@ function aiModal(){
   modal('翻譯設定',[
     {label:'翻譯引擎',type:'select',options:[['gemini','Google Gemini'],['claude','Anthropic Claude']],get:()=>c.engine,set:v=>{c.engine=v;sv()}},
     {label:'Gemini API Key（aistudio.google.com/apikey 建立，有免費額度）',type:'password',ph:'AIza...',get:()=>c.gkey,set:v=>{c.gkey=v.trim();sv()}},
-    {label:'Gemini Model',get:()=>c.gmodel,set:v=>{c.gmodel=v.trim()||AI_DEF.gmodel;sv()}},
+    {label:'Gemini Model',id:'gmodelInput',get:()=>c.gmodel,set:v=>{c.gmodel=v.trim()||AI_DEF.gmodel;sv()}},
+    {type:'custom',build:()=>{
+      const box=document.createElement('div');box.style.marginTop='8px';
+      const btn=document.createElement('button');btn.textContent='🔍 查詢我的 Key 可用的 Gemini 模型';
+      const note=document.createElement('div');note.className='hint';note.style.marginTop='6px';
+      const sel=document.createElement('select');sel.style.cssText='display:none;margin-top:6px';
+      btn.onclick=async()=>{
+        if(!c.gkey){note.textContent='請先填入並確認 Gemini API Key（填完後再按此鈕）。';return}
+        note.textContent='查詢中…';sel.style.display='none';
+        try{
+          let all=[],tok='';
+          do{const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200'+(tok?'&pageToken='+encodeURIComponent(tok):''),{headers:{'x-goog-api-key':c.gkey}});
+            if(!r.ok){let m=r.status+'';try{m+=' '+(await r.json()).error.message}catch{}throw new Error(m)}
+            const j=await r.json();all=all.concat(j.models||[]);tok=j.nextPageToken||''}while(tok);
+          const ms=all.filter(m=>/^models\/gemini/.test(m.name)&&(m.supportedGenerationMethods||[]).includes('generateContent')).map(m=>m.name.replace('models/',''));
+          if(!ms.length){note.textContent='查不到可用的 Gemini 模型。';return}
+          sel.innerHTML='';const ph=document.createElement('option');ph.value='';ph.textContent=`找到 ${ms.length} 個模型，請選擇…`;sel.append(ph);
+          ms.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n+(n===c.gmodel?'（目前使用）':'');sel.append(o)});
+          sel.style.display='block';note.textContent='選擇後會自動填入上方 Model 欄位。';
+          sel.onchange=()=>{if(!sel.value)return;c.gmodel=sel.value;sv();const inp=document.getElementById('gmodelInput');if(inp)inp.value=sel.value;note.textContent='已選擇：'+sel.value}
+        }catch(e){note.textContent='查詢失敗：'+e.message}
+      };
+      box.append(btn,note,sel);return box}},
     {label:'Claude API Key（選填，console.anthropic.com，另計費）',type:'password',ph:'sk-ant-...',get:()=>c.key,set:v=>{c.key=v.trim();sv()}},
     {label:'Claude Model',get:()=>c.model,set:v=>{c.model=v.trim()||AI_DEF.model;sv()}}
   ],'Key 只存在這個瀏覽器，翻譯時會直接從你的瀏覽器送到所選服務。Gemini App 的訂閱與 API 是分開的，需另外到 AI Studio 取得 API Key。');
@@ -337,8 +360,14 @@ async function translate(items,S,T){
     const prompt=`You are a professional translator for resumes/CVs (medical device project management). Translate each item from ${name[S]} to ${name[T]}. Keep proper nouns, company names, standards (FDA, MDR, ISO 13485, IEC 60601) and acronyms unchanged. Keep any [bracketed placeholders], translating their content. Preserve meaning exactly; do not add or remove facts. If "existing" is given, keep its terminology and style, updating it only to match the new source text. Return ONLY a JSON object mapping each id to its translated string, no other text.\n\n`+JSON.stringify(chunk.map(x=>({id:x.id,context:x.label,text:x.src,existing:x.kind==='edit'?x.old:undefined})));
     let txt;
     if(c.engine==='gemini'){
-      const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(c.gmodel)}:generateContent`,{method:'POST',headers:{'content-type':'application/json','x-goog-api-key':c.gkey},
-        body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:0.2}})});
+      let r;
+      for(let tryN=0;tryN<4;tryN++){
+        r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(c.gmodel)}:generateContent`,{method:'POST',headers:{'content-type':'application/json','x-goog-api-key':c.gkey},
+          body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:0.2}})});
+        if(r.ok||![429,500,502,503,504].includes(r.status)||tryN===3)break;
+        const wait=[3,8,15][tryN];status(`Gemini 暫時忙碌（${r.status}），${wait} 秒後自動重試（${tryN+1}/3）…`);
+        await new Promise(res=>setTimeout(res,wait*1000));
+      }
       if(!r.ok){let m=r.status+'';try{m+=' '+(await r.json()).error.message}catch{}throw new Error(m)}
       const j=await r.json();txt=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('');
     }else{
